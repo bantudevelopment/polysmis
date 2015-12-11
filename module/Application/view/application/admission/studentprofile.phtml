@@ -1,0 +1,135 @@
+<div class="col col-md-10">
+    <h3>Student Profile</h3>
+    <hr>
+    
+    <ul class="nav nav-tabs">
+      <li><a data-toggle="tab" href="#home" class="btn btn-info">Personal information</a></li>
+      <li><a data-toggle="tab" href="#financial" class="btn btn-info">Financial account</a></li>
+      <li><a data-toggle="tab" href="#menu2" class="btn btn-info">Academic status</a></li>
+      <li><a data-toggle="tab" href="#menu3" class="btn btn-info">Exam history</a></li>
+      <li><a data-toggle="tab" href="#menu4" class="btn btn-info">Courses</a></li>
+      <li><a data-toggle="tab" href="#menu5" class="btn btn-info">Accommodation</a></li>
+      <li><a data-toggle="tab" href="#menu6" class="btn btn-info">Waivers</a></li>
+    </ul>
+
+    <div class="tab-content table-bordered" >
+      <div class="row" style="margin: 15px;"> 
+      <div id="home" class="tab-pane fade in active">
+
+            <h3><?php echo $profile->getFkStudentid()->getFkUserid()->getFirstname()." ".$profile->getFkStudentid()->getFkUserid()->getSurname(); ?> (<?php echo $profile->getRegistrationNumber(); ?>)</h3>
+            <hr>
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong>Bio Data</strong></div>
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                        <td>TITLE</td>
+                        <td><?php echo $profile->getFkStudentid()->getFkUserid()->getTitle(); ?></td>
+                        </tr>        
+                        <tr>
+                        <td>DATE OF BIRTH</td>
+                        <td><?php echo date_format($profile->getFkStudentid()->getDob(),"d M Y"); ?></td>
+                        </tr>
+                        <tr>
+                        <td>GENDER</td>
+                        <td><?php echo $profile->getFkStudentid()->getFkUserid()->getGender(); ?></td>
+                        </tr>
+                        <tr>
+                        <td>MARITAL STATUS</td>
+                        <td><?php echo $profile->getFkStudentid()->getMaritalStatus(); ?></td>
+                        </tr>
+
+                        <tr>
+                        <td>NATIONALITY</td>
+                        <td><?php echo $profile->getFkStudentid()->getFkCountryid()->getNationality(); ?></td>
+                        </tr>        
+                        <tr>
+                        <td>COUNTRY</td>
+                        <td><?php echo $profile->getFkStudentid()->getFkCountryid()->getCountryName(); ?></td>
+                        </tr>
+                        <tr>
+                        <td>DISTRICT</td>
+                        <td><?php echo $profile->getFkStudentid()->getFkDistrictid()->getDistrictName(); ?></td>
+                        </tr>
+                              
+                        <tr>
+                        <td>COLLEGE ENTRY YEAR</td>
+                        <td><?php echo date_format($profile->getEntryYear(),"Y"); ?></td>
+                        </tr>
+                        
+                        <tr>
+                        <td>PROGRAM OF STUDY</td>
+                        <td><?php echo $profile->getFkProgramid()->getProgName(); ?></td>
+                        </tr>
+                        <tr>
+                        <td>ENTRY MANNER</td>
+                        <td><?php echo $profile->getFkEntrymannerid()->getEntryName(); ?></td>
+                        </tr>               
+                    </tbody>
+                </table>
+            </div> 
+            
+           
+
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong>Next of Kin Details</strong></div>
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                        <td>Phone number</td>
+                        <td>+265 999 371 088</td>
+                        </tr>        
+                        <tr>
+                        <td>Postal address</td>
+                        <td>Chicago Multi Supplies, P.O. Box 60433, Ndirande, BT 6.</td>
+                        </tr>
+                        <tr>
+                        <td>EMAIL ADDRESS</td>
+                        <td></td>
+                        </tr> 
+                        <tr>
+                        <td>PHYSICAL ADDRESS / AREA OF RESIDENCE</td>
+                        <td></td>
+                        </tr>               
+                    </tbody>
+                </table>
+            </div>             
+      </div>
+
+      <div id="financial" class="tab-pane fade">
+          <div class="col col-md-12">
+                <h3>Joel Kumwenda ()</h3>
+                <div class="panel panel-default">
+                    <div class="panel-heading"><strong>Next of Kin Details</strong></div>
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                            <td>Phone number</td>
+                            <td>+265 999 371 088</td>
+                            </tr>        
+                            <tr>
+                            <td>Postal address</td>
+                            <td>Chicago Multi Supplies, P.O. Box 60433, Ndirande, BT 6.</td>
+                            </tr>
+                            <tr>
+                            <td>RELATIONSHIP</td>
+                            <td>Father</td>
+                            </tr>            
+                        </tbody>
+                    </table>
+                </div>  
+          </div>
+      </div>
+            
+      <div id="menu2" class="tab-pane fade">
+        <h3>Menu 2</h3>
+        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+      </div>
+      <div id="menu3" class="tab-pane fade">
+        <h3>Menu 3</h3>
+        <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+      </div>
+      </div> 
+    </div>
+</div>
+        

@@ -1,0 +1,64 @@
+<div class="col col-md-10">
+    <h3>Regulations </h3>
+    <hr>
+    <div class="row">
+    <div class="col col-md-8">
+        
+     <form class="form-inline  text-left" role="form">
+        <div class="form-group">
+            <label for="email">Filter your search:</label>
+            <select class="form-control">
+            <option>--Select group--</option>
+            <option>20</option>
+            <option>30</option>
+            <option>50</option>
+            <option>100</option>
+            </select> 
+        </div>
+         <input type="submit" value="Show Data" class="btn btn-primary">
+    </form>        
+
+    </div>
+
+    <div class="col col-md-4 text-right">
+         <a class="btn btn-primary" href="<?php echo $this->url("admission",array("action"=>"uploadregulations")); ?>">Upload Regulations</a>
+    </div>
+</div>
+    <hr>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Controls</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>John</td>
+            <td>Doe</td>
+        </tr>
+        <tr>
+            <td>Mary</td>
+            <td>Moe</td>
+        </tr>
+        <tr>
+            <td>July</td>
+            <td>Dooley</td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="col ">
+    <form class="form-inline" role="form">
+        <div class="form-group">
+            <label for="email">Show:</label>
+            <select class="form-control">
+            <option>10</option>
+            <option>20</option>
+            <option>30</option>
+            <option>50</option>
+            <option>100</option>
+            </select> 
+        </div>
+    </form>    
+    </div>
+</div>

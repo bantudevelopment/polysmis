@@ -1,0 +1,271 @@
+<div class="panel">
+    <div class="panel-body">
+    <h3><?php echo $enrollmentinfo->getFirstname()." ".$enrollmentinfo->getSurname(); ?>: <?php echo $enrollmentinfo->getFkGroupid()->getGroupName(); ?>, <?php echo $enrollmentinfo->getFkPeriodid()->getTitle(); ?> registration</h3>
+    </div>
+    </div>
+<div class="col col-md-10">
+
+    <div class="col col-md-11">
+        <div class="alert alert-info"><i class="glyphicon glyphicon-info-sign"></i> All fields with * are required</div>
+        <div class="panel">
+            
+            
+            <div class="panel-body">
+            <?php
+            $frmregister->setAttributes(array('class'=>'form-horizontal','autocomplete'=>'off','id'=>'frmregister'))->prepare();;
+            echo $this->form()->openTag($frmregister);
+            ?>
+                <fieldset><legend><blockquote class="panel-warning">Bio data </blockquote></legend>
+                    <?php echo $this->formHidden($frmregister->get('Student')->get('pkStudentid')); ?>
+                    <?php echo $this->formHidden($frmregister->get('Student')->get('basicdetails')->get('surname')->setValue($enrollmentinfo->getSurname())); ?>
+                    <?php echo $this->formHidden($frmregister->get('Student')->get('basicdetails')->get('firstname')->setValue($enrollmentinfo->getFirstname())); ?>
+                    
+                   
+                    <div class="form-group">   
+                       <div class="col-sm-2">
+                           <?php echo $this->formLabel($frmregister->get('Student')->get('basicdetails')->get('initial')); ?>
+                       </div>
+                       <div class="col-sm-5">
+                           <?php echo $this->formElement($frmregister->get('Student')->get('basicdetails')->get('initial')->setValue($enrollmentinfo->getInitial())); ?>
+                       </div>
+                       <div class="col-sm-3">
+                           <?php echo $this->formElementErrors($frmregister->get('Student')->get('basicdetails')->get('initial')); ?>
+                       </div>
+                      
+                    </div>
+                    <div class="form-group">   
+                       <div class="col-sm-2">
+                           <?php echo $this->formLabel($frmregister->get('Student')->get('basicdetails')->get('gender')); ?>
+                       </div>
+                       <div class="col-sm-5">
+                           <?php echo $this->formElement($frmregister->get('Student')->get('basicdetails')->get('gender')->setValue($enrollmentinfo->getGender())); ?>
+                       </div>
+                       <div class="col-sm-3">
+                           <?php echo $this->formElementErrors($frmregister->get('Student')->get('basicdetails')->get('gender')); ?>
+                       </div>
+                      
+                    </div>
+
+                    <div class="form-group">   
+                       <div class="col-sm-2">
+                           <?php echo $this->formLabel($frmregister->get('Student')->get('dob')); ?>
+                       </div>
+                       <div class="col-sm-5">
+                           <?php echo $this->formElement($frmregister->get('Student')->get('dob')); ?>
+                       </div>
+                       <div class="col-sm-3">
+                           <?php echo $this->formElementErrors($frmregister->get('Student')->get('dob')); ?>
+                       </div>
+                      
+                    </div>
+                    <div class="form-group">   
+                       <div class="col-sm-2">
+                           <?php echo $this->formLabel($frmregister->get('Student')->get('maritalStatus')); ?>
+                       </div>
+                       <div class="col-sm-5">
+                           <?php echo $this->formElement($frmregister->get('Student')->get('maritalStatus')); ?>
+                       </div>
+                       <div class="col-sm-4"><?php echo $this->formElementErrors($frmregister->get('Student')->get('maritalStatus')); ?></div>
+                    </div>
+                    
+                </fieldset>
+                <fieldset><legend><blockquote class="panel-warning">Contact information</blockquote></legend>
+                    <div class="form-group">   
+                       <div class="col-sm-2">
+                           <?php echo $this->formLabel($frmregister->get('Student')->get('basicdetails')->get('emailaddress')); ?>
+                       </div>
+                       <div class="col-sm-5">
+                           <?php echo $this->formElement($frmregister->get('Student')->get('basicdetails')->get('emailaddress')->setValue($enrollmentinfo->getEmailAddress())); ?>
+                       </div>
+                       <div class="col-sm-4"><?php echo $this->formElementErrors($frmregister->get('Student')->get('basicdetails')->get('emailaddress')); ?></div>
+                    </div>
+                    <div class="form-group">   
+                       <div class="col-sm-2">
+                           <?php echo $this->formLabel($frmregister->get('Studentcontact')->get('postalAddress')); ?>
+                       </div>
+                       <div class="col-sm-5">
+                           <?php echo $this->formElement($frmregister->get('Studentcontact')->get('postalAddress')); ?>
+                       </div>
+                       <div class="col-sm-4"><?php echo $this->formElementErrors($frmregister->get('Studentcontact')->get('postalAddress')); ?></div>
+                    </div>
+                    
+                    <div class="form-group">   
+                       <div class="col-sm-2">
+                           <?php echo $this->formLabel($frmregister->get('Studentcontact')->get('cell')); ?>
+                       </div>
+                       <div class="col-sm-5">
+                           <?php echo $this->formElement($frmregister->get('Studentcontact')->get('cell')); ?>
+                       </div>
+                       <div class="col-sm-4"><?php echo $this->formElementErrors($frmregister->get('Studentcontact')->get('cell')); ?></div>
+                    </div>
+                    
+                    <div class="form-group">   
+                       <div class="col-sm-2">
+                           <?php echo $this->formLabel($frmregister->get('Studentcontact')->get('telephone')); ?>
+                       </div>
+                       <div class="col-sm-5">
+                           <?php echo $this->formElement($frmregister->get('Studentcontact')->get('telephone')); ?>
+                       </div>
+                       <div class="col-sm-4"><?php echo $this->formElementErrors($frmregister->get('Studentcontact')->get('telephone')); ?></div>
+                    </div>
+                    
+                </fieldset>
+
+                <fieldset><legend><blockquote class="panel-warning">Address</blockquote></legend>
+                    
+                    <div class="form-group">   
+                       <div class="col-sm-2">
+                           <?php echo $this->formLabel($frmregister->get('Student')->get('fkDistrictid')); ?>
+                       </div>
+                       <div class="col-sm-5">
+                           <?php echo $this->formElement($frmregister->get('Student')->get('fkDistrictid')); ?>
+                       </div>
+                       <div class="col-sm-4"><?php echo $this->formElementErrors($frmregister->get('Student')->get('fkDistrictid')); ?></div>
+                    </div>
+                    <div class="form-group">   
+                       <div class="col-sm-2">
+                           <?php echo $this->formLabel($frmregister->get('Student')->get('fkCountryid')); ?>
+                       </div>
+                       <div class="col-sm-5">
+                           <?php echo $this->formElement($frmregister->get('Student')->get('fkCountryid')); ?>
+                       </div>
+                       <div class="col-sm-4"><?php echo $this->formElementErrors($frmregister->get('Student')->get('fkCountryid')); ?></div>
+                    </div>
+
+                   
+                    
+                    
+                </fieldset>
+                <fieldset><legend><blockquote class="panel-warning">Guardian/Next of kin</blockquote></legend>
+                    <div class="form-inline">   
+                      <div class="col-sm-2">
+                      <label>Full name:*</label>
+                       </div>
+                       <div class="col-sm-8">
+                           <?php echo $this->formElement($frmregister->get('Guardian')->get('title')); ?>
+                           <?php echo $this->formElement($frmregister->get('Guardian')->get('surname')); ?>
+                           <?php echo $this->formElement($frmregister->get('Guardian')->get('firstname')); ?>
+                       </div>
+                       <div class="col-sm-4"><?php echo $this->formElementErrors($frmregister->get('Guardian')->get('firstname')); ?></div>
+                      
+                    </div>
+                    <div class="form-group">   
+                       
+                    </div>
+                    <div class="form-group">   
+                       <div class="col-sm-2">
+                           <?php echo $this->formLabel($frmregister->get('Guardian')->get('postalAddress')); ?>
+                       </div>
+                       <div class="col-sm-5">
+                           <?php echo $this->formElement($frmregister->get('Guardian')->get('postalAddress')); ?>
+                       </div>
+                       <div class="col-sm-4"><?php echo $this->formElementErrors($frmregister->get('Guardian')->get('postalAddress')); ?></div>
+                      
+                    </div>
+                    <div class="form-group">   
+                       <div class="col-sm-2">
+                           <?php echo $this->formLabel($frmregister->get('Guardian')->get('emailAddress')); ?>
+                       </div>
+                       <div class="col-sm-5">
+                           <?php echo $this->formElement($frmregister->get('Guardian')->get('emailAddress')); ?>
+                       </div>
+                       <div class="col-sm-4"><?php echo $this->formElementErrors($frmregister->get('Guardian')->get('emailAddress')); ?></div>
+                      
+                    </div>
+
+                    <div class="form-group">   
+                       <div class="col-sm-2">
+                           <?php echo $this->formLabel($frmregister->get('Guardian')->get('mobile')); ?>
+                       </div>
+                       <div class="col-sm-5">
+                           <?php echo $this->formElement($frmregister->get('Guardian')->get('mobile')); ?>
+                       </div>
+                       <div class="col-sm-4"><?php echo $this->formElementErrors($frmregister->get('Guardian')->get('mobile')); ?></div>
+                      
+                    </div>
+                    <div class="form-group">   
+                       <div class="col-sm-2">
+                           <?php echo $this->formLabel($frmregister->get('Guardian')->get('telephoneNumber')); ?>
+                       </div>
+                       <div class="col-sm-5">
+                           <?php echo $this->formElement($frmregister->get('Guardian')->get('telephoneNumber')); ?>
+                       </div>
+                       <div class="col-sm-4"><?php echo $this->formElementErrors($frmregister->get('Guardian')->get('telephoneNumber')); ?></div>
+                      
+                    </div>
+                    <div class="form-group">   
+                       <div class="col-sm-2">
+                           <?php echo $this->formLabel($frmregister->get('Guardian')->get('relationship')); ?>
+                       </div>
+                       <div class="col-sm-5">
+                           <?php echo $this->formElement($frmregister->get('Guardian')->get('relationship')); ?>
+                       </div>
+                       <div class="col-sm-4"><?php echo $this->formElementErrors($frmregister->get('Guardian')->get('relationship')); ?></div>
+                      
+                    </div>
+                    
+                </fieldset>
+                <fieldset><legend><blockquote class="panel-warning">Employment</blockquote></legend>
+                    
+                    <div class="form-group">   
+                       <div class="col-sm-2">
+                           <?php echo $this->formLabel($frmregister->get('Employment')->get('designation')); ?>
+                       </div>
+                       <div class="col-sm-5">
+                           <?php echo $this->formElement($frmregister->get('Employment')->get('designation')); ?>
+                       </div>
+                       <div class="col-sm-4"><?php echo $this->formElementErrors($frmregister->get('Employment')->get('designation')); ?></div>
+                    </div>
+                    <div class="form-group">   
+                       <div class="col-sm-2">
+                           <?php echo $this->formLabel($frmregister->get('Employment')->get('organization')); ?>
+                       </div>
+                       <div class="col-sm-5">
+                           <?php echo $this->formElement($frmregister->get('Employment')->get('organization')); ?>
+                       </div>
+                       <div class="col-sm-4"><?php echo $this->formElementErrors($frmregister->get('Employment')->get('organization')); ?></div>
+                    </div>
+                    <div class="form-group">   
+                       <div class="col-sm-2">
+                           <?php echo $this->formLabel($frmregister->get('Employment')->get('startYear')); ?>
+                       </div>
+                       <div class="col-sm-5">
+                           <?php echo $this->formElement($frmregister->get('Employment')->get('startYear')); ?>
+                       </div>
+                       <div class="col-sm-4"><?php echo $this->formElementErrors($frmregister->get('Employment')->get('startYear')); ?></div>
+                    </div>
+                    <div class="form-group">   
+                       <div class="col-sm-2">
+                           <?php echo $this->formLabel($frmregister->get('Employment')->get('endYear')); ?>
+                       </div>
+                       <div class="col-sm-5">
+                           <?php echo $this->formElement($frmregister->get('Employment')->get('endYear')); ?>
+                       </div>
+                       <div class="col-sm-4"><?php echo $this->formElementErrors($frmregister->get('Employment')->get('endYear')); ?></div>
+                    </div>
+                    <div class="form-group">   
+                       <div class="col-sm-2">
+                           <?php echo $this->formLabel($frmregister->get('Employment')->get('isCurrent')); ?>
+                       </div>
+                       <div class="col-sm-5">
+                           <?php echo $this->formElement($frmregister->get('Employment')->get('isCurrent')); ?>
+                       </div>
+                       
+                    </div>
+                </fieldset>
+                    <div class="form-group">   
+                       <div class="col-sm-3"></div>
+                       <div class="col-sm-5">
+                           <input name="submit" type="submit" class="btn btn-success" value="Continue" />
+                           <a href="<?php echo $this->url("login",array("action"=>"index")); ?>" class="btn btn-warning">Cancel</a>
+                       </div>
+                       <div class="col-sm-4"></div>
+                    </div>                            
+                <?php
+                $this->form()->closeTag();
+                ?>
+            </div>
+        </div>
+    </div>
+</div>
+        

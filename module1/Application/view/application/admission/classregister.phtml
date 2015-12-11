@@ -1,0 +1,69 @@
+<div class="col col-md-10">
+  <?php
+  // $form->setAttributes(array('id'=>'formsubmit'));
+  // echo $this->form()->openTag($form); 
+  ?>
+    <h3>Class register</h3>
+    <hr>
+
+        <div class="modal-body">
+            <legend><blockquote class="panel-warning"><?php echo $module->getFkCcid()->getFkModuleid()->getModuleName(); ?> (<?php echo $module->getFkCcid()->getFkGroupid()->getGroupName(); ?>) </blockquote></legend>
+            <div class="alert alert-info" role="alert">
+                <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                
+                All fields are required
+              </div>
+             
+            <div class="alert alert-success" id="success" role="alert"></div>
+            <div class="alert alert-danger" id="warning" role="alert">
+                <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
+            </div>
+            
+            <div> 
+                <input type="text" class="form-control" name="classdate" placeholder="Lesson date" />
+            </div>
+            
+            <p>&nbsp;</p>
+            <div id="studentlist">
+                
+                <table width="100%" class="table table-bordered table-striped">
+                    <thead>
+                    <tr><th>&nbsp;</th><th>Reg #</th><th>Surname</th><th>Firstname</th><th>Gender</th>
+                    </tr>
+                    </thead>
+                    <tr>
+                        <td><input type="checkbox" /></td><td>BME233</td><td>Kumwembe</td><td>Humphrey</td><td>Male</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" /></td><td>BME233</td><td>Kumwembe</td><td>Humphrey</td><td>Male</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" /></td><td>BME233</td><td>Kumwembe</td><td>Humphrey</td><td>Male</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" /></td><td>BME233</td><td>Kumwembe</td><td>Humphrey</td><td>Male</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" /></td><td>BME233</td><td>Kumwembe</td><td>Humphrey</td><td>Male</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" /></td><td>BME233</td><td>Kumwembe</td><td>Humphrey</td><td>Male</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" /></td><td>BME233</td><td>Kumwembe</td><td>Humphrey</td><td>Male</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" /></td><td>BME233</td><td>Kumwembe</td><td>Humphrey</td><td>Male</td>
+                    </tr>
+                </table>
+                
+            </div>
+            
+            
+        </div>
+        <div class="footer">
+            <button name="btnSave" value="1" id="btnSave" class="btn btn-success"><span class="glyphicon glyphicon-save " aria-hidden="true"></span>&nbsp;Save</button>
+            <button name="btnCancel" value="1" id="btnCancel" class="btn btn-warning"><span class="glyphicon glyphicon-backward " aria-hidden="true"></span>&nbsp;Cancel</button>
+        </div>
+
+</div>

@@ -1,0 +1,27 @@
+<div class="row nav-wrap">
+            <nav class="navbar navbar-default">
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>                        
+                  </button>
+
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                  <ul class="nav navbar-nav">
+                    <li class="<?php echo ($this->activemodule=="home")?"active":""; ?>"><a href="<?php echo $this->url("home",array("action"=>"index")); ?>">Dashboard</a></li>
+                    <li class="<?php echo ($this->activemodule=="admission")?"active":""; ?>"><a href="<?php echo $this->url("admission",array("action"=>"index")); ?>">Registration</a></li>
+                    <li class="<?php echo ($this->activemodule=="examination")?"active":""; ?>"><a href="<?php echo $this->url("examination",array("action"=>"index")); ?>">Assessment</a></li>
+                    <li class="<?php echo ($this->activemodule=="finance")?"active":""; ?>"><a href="<?php echo $this->url("finance",array("action"=>"index")); ?>">Finance</a></li>
+                    <li class="<?php echo ($this->activemodule=="accommodation")?"active":""; ?>"><a href="<?php echo $this->url("accommodation",array("action"=>"index")); ?>">Accommodation</a></li>
+                    <li class="<?php echo ($this->activemodule=="administration")?"active":""; ?>"><a href="<?php echo $this->url("administration",array("action"=>"index")); ?>">Administration</a></li>
+                  </ul>
+                </div>
+            </nav>              
+
+            <?php
+            echo $this->partial("include/menu/{$this->activemodule}.phtml");
+            ?>
+        </div>
+    

@@ -1,0 +1,84 @@
+<?php
+echo $this->partial('include/form/modalform.phtml');
+?>
+<script type="text/javascript">
+$(document).ready(function(){
+      $("a[title='modify']").click(function(){
+        $("input[name='progCode']").val($("#code"+this.id).html());
+        $("input[name='progName']").val($("#name"+this.id).html());
+        $("input[name='pkProgramid']").val($("#id"+this.id).val());
+        $("select[name='fkSchoolid']").val($("#school"+this.id).val());
+        $("select[name='fkProgramcategoryid']").val($("#category"+this.id).val());
+    });
+});
+</script>
+<div class="col col-md-10">
+    <h3>Programmes</h3>
+    <hr>
+    <div class="row">
+    <div class="col col-md-4">
+        
+        
+
+    </div>
+
+    <div class="col col-md-8 text-right">
+        <a data-toggle="modal" data-target="#formmodal" class="btn btn-primary">Add programme</a>
+    </div>
+</div>
+    
+    <hr>
+    <table class="table table-bordered table-hover" id="searchable">
+        <thead>
+            <tr>
+                <th>Code</th>
+                <th>Name</th>
+                <th>School</th>
+                <th>Category</th>
+                <th width="60"></th>
+                
+            </tr>
+        </thead>
+        <tbody>
+        <?php
+        $counter = 1;
+        foreach($programs as $program){
+        ?>
+        <tr>
+            <td><span id="code<?php echo $counter; ?>"><?php echo $program->getProgCode(); ?></span></td>
+            <td id="name<?php echo $counter; ?>"><?php echo $program->getProgName(); ?></td>
+            <input value="<?php echo $program->getPkProgramid(); ?>" id="id<?php echo $counter; ?>" type="hidden" />
+            <input value="<?php echo $program->getFkSchoolid()->getPkSchoolid(); ?>" id="school<?php echo $counter; ?>" type="hidden" />
+            <input value="<?php echo $program->getFkProgramcategoryid()->getPkProgramcategoryid(); ?>" id="category<?php echo $counter; ?>" type="hidden" />
+            <td ><?php echo $program->getFkSchoolid()->getSchoolName(); ?></td>
+            <td><?php echo $program->getFkProgramcategoryid()->getCategoryName(); ?></td>
+            <td><div class="dropdown dropdown-menu-right pull-right">
+                    <button class="btn btn-sm btn-info dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                        <i class="glyphicon glyphicon-edit"></i> Actions
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu1">
+                        <li role="presentation">
+                            <a title="modify" id="<?php echo $counter; ?>" data-toggle="modal" data-target="#formmodal" style="cursor: pointer" >Modify</a>
+                        </li>
+                        <li role="presentation">
+                            <a  href="<?php echo $this->url("administration",array("action"=>"classes","id"=>$program->getPkProgramid())); ?>">Classes/Course</a>
+                        </li>                        
+                    </ul>
+                </div>    </td>
+            
+        </tr>
+        <?php
+            $counter++;
+        }
+        ?>
+        </tbody>
+    </table>
+    <div class="col ">
+    <form class="form-inline" role="form">
+        
+        <a class="btn btn-success">Download <i class="glyphicon glyphicon-download"></i></a> 
+    </form>    
+    </div>
+</div>
+        

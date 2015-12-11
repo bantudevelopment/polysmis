@@ -1,0 +1,77 @@
+<div class="row">
+        <div class="col col-md-12">
+            <div class="col col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <h4 class="page-header">Program details</h4>
+                    <div class="panel-body">
+                        <div class="alert alert-info"><strong><?php echo $department->getDeptName()."(".$department->getDeptCode().")"; ?></strong></div>
+<?php
+    
+    $form->setAttributes(array('name'=>'formsubmit','class'=>'form-horizontal'))->prepare();
+    echo $this->form()->openTag($form);
+    $name = (!empty($details))?$details->getProgramName():$form->get('Program')->get('programName')->getValue();
+    $lname = (!empty($details))?$details->getProgramLongName():$form->get('Program')->get('programLongName')->getValue();
+    $code = (!empty($details))?$details->getProgramCode():$form->get('Program')->get('programCode')->getValue();
+    $duration = (!empty($details))?$details->getDuration():$form->get('Program')->get('duration')->getValue();
+    $award = (!empty($details))?$details->getFkAwardid():$form->get('Program')->get('fkAwardid')->getValue();
+    $id   = (!empty($details))?$details->getPkProgramid():$form->get('Program')->get('pkProgramid')->getValue();
+ ?>
+                            
+    <div class="form-group">   
+       <div class="col-sm-3"><?php echo $this->formLabel($form->get('Program')->get('programName')); ?> </div>
+       <div class="col-sm-5">
+           <?php echo $this->formElement($form->get('Program')->get('programName')->setValue($name)); ?>
+       </div>
+       <div class="col-sm-4"><?php echo $this->formElementErrors($form->get('Program')->get('programName')); ?></div>
+    </div>
+
+    <div class="form-group">   
+       <div class="col-sm-3"><?php echo $this->formLabel($form->get('Program')->get('programCode')); ?> </div>
+       <div class="col-sm-5">
+           <?php echo $this->formElement($form->get('Program')->get('programCode')->setValue($code)); ?>
+       </div>
+       <div class="col-sm-4"><?php echo $this->formElementErrors($form->get('Program')->get('programCode')); ?></div>
+    </div>
+                        
+    <div class="form-group">   
+       <div class="col-sm-3"><?php echo $this->formLabel($form->get('Program')->get('programLongName')); ?> </div>
+       <div class="col-sm-5">
+           <?php echo $this->formElement($form->get('Program')->get('programLongName')->setValue($lname)); ?>
+       </div>
+       <div class="col-sm-4"><?php echo $this->formElementErrors($form->get('Program')->get('programLongName')); ?></div>
+    </div>
+    <div class="form-group">   
+       <div class="col-sm-3"><?php echo $this->formLabel($form->get('Program')->get('fkAwardid')); ?> </div>
+       <div class="col-sm-5">
+           <?php echo $this->formElement($form->get('Program')->get('fkAwardid')->setValue($award)); ?>
+       </div>
+       <div class="col-sm-4"><?php echo $this->formElementErrors($form->get('Program')->get('fkAwardid')); ?></div>
+    </div>
+    <div class="form-group">   
+       <div class="col-sm-3"><?php echo $this->formLabel($form->get('Program')->get('duration')); ?> </div>
+       <div class="col-sm-5">
+           <?php echo $this->formElement($form->get('Program')->get('duration')->setValue($duration)); ?>
+           <?php echo $this->formHidden($form->get('Program')->get('pkProgramid')->setValue($id)); ?>
+           <?php echo $this->formHidden($form->get('Program')->get('fkDeptid')->setValue($department->getPkDeptid())); ?>
+       </div>
+       <div class="col-sm-4"><?php echo $this->formElementErrors($form->get('Program')->get('duration')); ?></div>
+    </div>
+                            
+
+    <div class="form-group">   
+       <div class="col-sm-3"></div>
+       <div class="col-sm-5">
+           <input type="submit" name="save" class="btn btn-success" value="Save" />
+           <a href="<?php echo $this->url("administration",array("action"=>"departmentprograms","id"=>$department->getPkDeptid())); ?>" class="btn btn-warning">Cancel</a>
+       </div>
+       <div class="col-sm-4"></div>
+    </div>                            
+<?php
+ echo $this->form()->closeTag();
+?>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

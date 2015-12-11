@@ -1,0 +1,17 @@
+<div class="col col-md-2 alert-info" id="MainMenu">
+    <h3><i class="glyphicon glyphicon-globe"></i> Examination</h3> 
+    <hr>    
+    <ul class="nav nav-pills nav-stacked nav-wrap">
+        <li role="presentation"><a href="#exammanagement" data-toggle="collapse" data-parent="#MainMenu" ><i class="glyphicon glyphicon-th-list"></i> Exam Management</a></li>   
+        <div class="collapse" id="exammanagement">
+        <?php if($this->isAllowed("Application\Controller\Examination","exammanagement")){ ?>
+            <a href="<?php echo $this->url("examination",array("action"=>"exammanagement")); ?>" class="list-group-item">Assessments</a>
+        <?php } ?>
+      <a href="<?php echo $this->url("examination",array("action"=>"results")); ?>" class="list-group-item">Results</a>
+      
+    </div>   
+        <li role="presentation"><a href="<?php echo $this->url("examination",array("action"=>"publishexams")); ?>" ><i class="glyphicon glyphicon-th-list"></i> Publish Exams</a></li>    
+        <li role="presentation"><a href="<?php echo $this->url("examination",array("action"=>"gradebook")); ?>" ><i class="glyphicon glyphicon-th-list"></i> Grade Book</a></li>
+        <li role="presentation"><a href="<?php echo $this->url("examination",array("action"=>"transcripts")); ?>" ><i class="glyphicon glyphicon-th-list"></i> Transcripts</a></li>
+    </ul>
+</div>

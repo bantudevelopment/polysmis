@@ -1,0 +1,66 @@
+<div class="row">
+        <div class="col col-md-12">
+            <div class="col col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <h4 class="page-header">Academic details</h4>
+                    <div class="panel-body">
+<?php
+    
+    $form->setAttributes(array('name'=>'formsubmit','class'=>'form-horizontal'))->prepare();
+    echo $this->form()->openTag($form);
+    $title = (!empty($details))?$details->getAcyr():$form->get('Academicyear')->get('acyr')->getValue();
+    $startDate = (!empty($details))?$details->getStartDate():$form->get('Academicyear')->get('startDate')->getValue();
+    $endDate = (!empty($details))?$details->getEndDate():$form->get('Academicyear')->get('endDate')->getValue();
+    $category = (!empty($details))?$details->getCategory():$form->get('Academicyear')->get('category')->getValue();
+    $id   = (!empty($details))?$details->getPkAcademicperiodid():$form->get('Academicyear')->get('pkAcademicperiodid')->getValue();
+ ?>
+                            
+    <div class="form-group">   
+       <div class="col-sm-3"><?php echo $this->formLabel($form->get('Academicyear')->get('acyr')); ?> </div>
+       <div class="col-sm-5">
+           <?php echo $this->formElement($form->get('Academicyear')->get('acyr')->setValue($title)); ?>
+       </div>
+       <div class="col-sm-4"><?php echo $this->formElementErrors($form->get('Academicyear')->get('acyr')); ?></div>
+    </div>
+
+    <div class="form-group">   
+       <div class="col-sm-3"><?php echo $this->formLabel($form->get('Academicyear')->get('startDate')); ?> </div>
+       <div class="col-sm-5">
+           <?php echo $this->formElement($form->get('Academicyear')->get('startDate')->setValue($startDate)); ?>
+       </div>
+       <div class="col-sm-4"><?php echo $this->formElementErrors($form->get('Academicyear')->get('startDate')); ?></div>
+    </div>
+
+    <div class="form-group">   
+       <div class="col-sm-3"><?php echo $this->formLabel($form->get('Academicyear')->get('endDate')); ?> </div>
+       <div class="col-sm-5">
+           <?php echo $this->formElement($form->get('Academicyear')->get('endDate')->setValue($endDate)); ?>
+           <?php echo $this->formHidden($form->get('Academicyear')->get('pkAcademicperiodid')->setValue($id)); ?>
+       </div>
+       <div class="col-sm-4"><?php echo $this->formElementErrors($form->get('Academicyear')->get('endDate')); ?></div>
+    </div>
+    <div class="form-group">   
+       <div class="col-sm-3"><?php echo $this->formLabel($form->get('Academicyear')->get('category')); ?> </div>
+       <div class="col-sm-5">
+           <?php echo $this->formElement($form->get('Academicyear')->get('category')->setValue($category)); ?>
+       </div>
+       <div class="col-sm-4"><?php echo $this->formElementErrors($form->get('Academicyear')->get('category')); ?></div>
+    </div>                        
+
+    <div class="form-group">   
+       <div class="col-sm-3"></div>
+       <div class="col-sm-5">
+           <input type="submit" name="save" class="btn btn-success" value="Save" />
+           <a href="<?php echo $this->url("administration",array("action"=>"academicperiod")); ?>" class="btn btn-warning">Cancel</a>
+       </div>
+       <div class="col-sm-4"></div>
+    </div>                            
+<?php
+ echo $this->form()->closeTag();
+?>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

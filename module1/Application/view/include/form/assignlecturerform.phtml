@@ -1,0 +1,72 @@
+<script type="text/javascript">
+    var is_xmlhttprequest = <?php echo $is_xmlhttprequest; ?>;
+    var formurl           = '<?php echo $this->url($controller, array('action'=>'assignlecturer')); ?>';
+</script>
+<div id="assignmodal" class="modal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+  <?php
+  $formassignment->setAttributes(array('id'=>'formallocate'));
+  echo $this->form()->openTag($formassignment);
+ 
+  ?>
+    <div class="modal-dialog modal-body">
+        
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="formtitle">Assign lecturer<span id="user"></span></h4>
+        </div>
+        <div class="modal-body">
+            <div class="alert alert-info" role="alert">
+                <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                
+                <span id="subjecttitle"></span>
+              </div>
+             
+            <div class="alert alert-success" id="success-assign" role="alert"></div>
+            <div class="alert alert-danger" id="warning-assign" role="alert">
+                <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
+            </div>
+            <?php
+//            foreach($formassignment as $elements){
+//                if(count($elements)>1){
+//
+//                    foreach($elements->getElements() as $element){
+            ?>
+            <div> 
+            <?php
+             echo $this->formElement($formassignment->get('fkCcid'));
+             echo $this->formElement($formassignment->get('fkDeptid'));
+             echo $this->formLabel($formassignment->get('fkStaffid'));
+             echo $this->formElement($formassignment->get('fkStaffid'));
+            ?>
+            </div>
+            <?php
+//                    }
+//                }else{
+            ?>
+            <div>
+                &nbsp;
+            </div>
+            <div id="servicingdepartment"> 
+            <?php
+             echo $this->formLabel($formassignment->get('servicingDept'));
+             echo $this->formElement($formassignment->get('servicingDept'));
+            ?>
+            </div>
+            <?php
+//                }
+//            }
+            ?>
+             
+         
+        </div>
+       <div class="modal-footer">
+           <button name="btnSave" value="1" id="btnSave" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-floppy-save " aria-hidden="true"></span>&nbsp;Assign</button>
+      </div>
+    </div>
+  </div>
+ <?php
+ echo $this->form()->closeTag();
+ ?>
+    
+</div>

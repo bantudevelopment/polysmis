@@ -1,0 +1,99 @@
+<div class="row">
+        <div class="col col-md-12">
+            <div class="col col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <h4 class="page-header">Class module assignment</h4>
+                    <div class="panel-body">
+                        <div class="alert alert-info"><strong><?php echo $class->getClassName()."(".$class->getClassCode().")"; ?></strong></div>
+<?php
+$form->setAttributes(array('name'=>'formsubmit','class'=>'form-horizontal'))->prepare();
+echo $this->form()->openTag($form);
+$exweight          = (!empty($details))?$details->getExweight():$form->get('Classmodule')->get('exweight')->getValue();
+$cwkweight         = (!empty($details))?$details->getCwkweight():$form->get('Classmodule')->get('cwkweight')->getValue();
+$moduleid          = (!empty($details))?$details->getFkModuleid()->getPkModuleid():$form->get('Classmodule')->get('fkModuleid')->getValue();
+$classid           = (!empty($details))?$details->getFkClassid():$form->get('Classmodule')->get('fkClassid')->getValue();
+$fkAcademicperiod  = (!empty($details))?$details->getFkAcademicperiod():$form->get('Classmodule')->get('fkAcademicperiod')->getValue();
+$id                = (!empty($details))?$details->getPkClassmoduleid():$form->get('Classmodule')->get('pkClassmoduleid')->getValue();
+$iscore            = (!empty($details))?$details->getIsCore():$form->get('Classmodule')->get('isCore')->getValue();
+$iproject          = (!empty($details))?$details->getIsProject():$form->get('Classmodule')->get('isProject')->getValue();
+    if(!$id){
+?>                            
+    <div class="form-group">   
+       <div class="col-sm-3"><?php echo $this->formLabel($form->get('Classmodule')->get('fkModuleid')); ?> </div>
+       <div class="col-sm-5">
+           <?php echo $this->formElement($form->get('Classmodule')->get('fkModuleid')->setValue($moduleid)); ?>
+       </div>
+       <div class="col-sm-4"><?php echo $this->formElementErrors($form->get('Classmodule')->get('fkModuleid')); ?></div>
+    </div>
+<?php
+}else{
+?>
+    <div class="form-group">   
+        <div class="col-sm-3"><label>Module</label> </div>
+       <div class="col-sm-5">
+           <input type="text" class="form-control" disabled="disabled" value="<?php echo strtoupper($details->getFkModuleid()->getModuleName()."(".$details->getFkModuleid()->getModuleCode().")"); ?>" />
+           <?php echo $this->formElement($form->get('Classmodule')->get('fkModuleid')->setValue($moduleid)); ?>
+       </div>
+       <div class="col-sm-4"><?php echo $this->formElementErrors($form->get('Classmodule')->get('fkModuleid')); ?></div>
+    </div>
+<?php
+}
+?>
+    <div class="form-group">   
+       <div class="col-sm-3"><?php echo $this->formLabel($form->get('Classmodule')->get('exweight')); ?> </div>
+       <div class="col-sm-5">
+           <?php echo $this->formElement($form->get('Classmodule')->get('exweight')->setValue($exweight)); ?>
+           <?php echo $this->formHidden($form->get('Classmodule')->get('pkClassmoduleid')->setValue($id)); ?>
+            <?php echo $this->formHidden($form->get('Classmodule')->get('fkClassid')->setValue($class->getPkClassid())); ?>
+       </div>
+       <div class="col-sm-4"><?php echo $this->formElementErrors($form->get('Classmodule')->get('exweight')); ?></div>
+    </div>
+    
+    <div class="form-group">   
+       <div class="col-sm-3"><?php echo $this->formLabel($form->get('Classmodule')->get('cwkweight')); ?> </div>
+       <div class="col-sm-5">
+           <?php echo $this->formElement($form->get('Classmodule')->get('cwkweight')->setValue($cwkweight)); ?>
+       </div>
+       <div class="col-sm-4"><?php echo $this->formElementErrors($form->get('Classmodule')->get('cwkweight')); ?></div>
+    </div>
+    <div class="form-group">   
+       <div class="col-sm-3"><?php echo $this->formLabel($form->get('Classmodule')->get('fkAcademicperiod')); ?> </div>
+       <div class="col-sm-5">
+           <?php echo $this->formElement($form->get('Classmodule')->get('fkAcademicperiod')->setValue($fkAcademicperiod)); ?>
+       </div>
+       <div class="col-sm-4"><?php echo $this->formElementErrors($form->get('Classmodule')->get('fkAcademicperiod')); ?></div>
+    </div>
+    <div class="form-group">   
+       <div class="col-sm-3"><?php echo $this->formLabel($form->get('Classmodule')->get('isCore')); ?> </div>
+       <div class="col-sm-5">
+           <?php echo $this->formElement($form->get('Classmodule')->get('isCore')->setValue($iscore)); ?>
+       </div>
+       <div class="col-sm-4"><?php echo $this->formElementErrors($form->get('Classmodule')->get('isCore')); ?></div>
+    </div>
+    
+     <div class="form-group">   
+       <div class="col-sm-3"><?php echo $this->formLabel($form->get('Classmodule')->get('isProject')); ?> </div>
+       <div class="col-sm-5">
+           <?php echo $this->formElement($form->get('Classmodule')->get('isProject')->setValue($iproject)); ?>
+       </div>
+       <div class="col-sm-4"><?php echo $this->formElementErrors($form->get('Classmodule')->get('isProject')); ?></div>
+    </div>
+    
+                        
+    <div class="form-group">   
+       <div class="col-sm-3"></div>
+       <div class="col-sm-5">
+           <input type="submit" name="save" class="btn btn-success" value="Save" />
+           <a href="<?php echo $this->url("administration",array("action"=>"classmodules","id"=>$class->getPkClassid())); ?>" class="btn btn-warning">Cancel</a>
+       </div>
+       <div class="col-sm-4"></div>
+    </div>                            
+<?php
+ echo $this->form()->closeTag();
+?>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,46 @@
+<div class="col col-md-2 alert-info" id="MainMenu">
+    <h3><i class="glyphicon glyphicon-globe"></i> Admission</h3> 
+    <hr>    
+    <ul class="nav nav-pills nav-stacked nav-wrap">
+    <li role="presentation"><a href="#enrollment" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-plus"></i> Enrollment </a></li>
+    <div class="collapse" id="enrollment">
+      <a href="<?php echo $this->url("admission",array("action"=>"enrollment")); ?>" class="list-group-item">Students Enrollment</a>
+    </div>
+    
+    <li role="presentation"><a href="#classmanagement" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-th-list"></i> Class Management </a></li>
+    <div class="collapse" id="classmanagement">
+      <a href="<?php echo $this->url("admission",array("action"=>"classlist")); ?>" class="list-group-item">Class List</a>
+      <a href="<?php echo $this->url("admission",array("action"=>"classattendance")); ?>" class="list-group-item">Class Attendance</a>
+      <a href="<?php echo $this->url("admission",array("action"=>"regulations")); ?>" class="list-group-item">Regulations</a>      
+    </div>    
+
+    <li role="presentation"><a href="<?php echo $this->url("admission",array("action"=>"studentlisting")); ?>"><i class="glyphicon glyphicon-user"></i> Student Profile </a></li>
+    <li role="presentation"><a href="<?php echo $this->url("admission",array("action"=>"studentprofile")); ?>"><i class="glyphicon glyphicon-user"></i> My Profile </a></li>
+    
+
+    <li role="presentation"><a href="#classmanagement" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-tag"></i> Administration Pocket</a></li>
+    <div class="collapse" id="classmanagement">
+      <a href="" class="list-group-item">Subitem 1</a>
+      <a href="" class="list-group-item">Subitem 2</a>
+      <a href="" class="list-group-item">Subitem 3</a>
+    </div> 
+
+    <li role="presentation"><a href="<?php echo $this->url("admission",array("action"=>"register")); ?>"><i class="glyphicon glyphicon-list-alt"></i> Register</a></li>
+    
+
+    <li role="presentation"><a href="#classmanagement" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-repeat"></i> Progression / Rollover</a></li>
+    <div class="collapse" id="classmanagement">
+      <a href="" class="list-group-item">Subitem 1</a>
+      <a href="" class="list-group-item">Subitem 2</a>
+      <a href="" class="list-group-item">Subitem 3</a>
+    </div>
+
+    <li role="presentation"><a href="#classmanagement" data-toggle="collapse" data-parent="#MainMenu"><i class="glyphicon glyphicon-signal"></i> Reports</a></li>
+    <div class="collapse" id="classmanagement">
+      <a href="" class="list-group-item">Subitem 1</a>
+      <a href="" class="list-group-item">Subitem 2</a>
+      <a href="" class="list-group-item">Subitem 3</a>
+    </div>
+               
+    </ul>
+</div>

@@ -1,0 +1,80 @@
+<div class="col col-md-10">
+    <h3>Manage examinations</h3>
+    <hr>
+    <div class="row">
+    <div class="col col-md-8">
+        
+        <form class="form-inline  text-left" role="form" method="POST">
+        <div class="form-group">
+            <label for="email">Filter your search:</label>
+            <select class="form-control" name="group">
+
+            <option>--Academic Year--</option>
+            <option>2013</option>
+            <option>2014</option>
+            <option>2015</option>
+
+            </select> 
+        </div> 
+    </form>        
+    </div>
+</div>
+    <hr>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Course</th>
+                <th>Class</th>
+                <th>Academic Year</th>
+                <th>Controls</th>
+
+            </tr>
+        </thead>
+        <tbody>
+        <?php
+        foreach($modules as $module){
+        ?>
+        <tr>
+            <td><?php echo $module->getFkCcid()->getFkModuleid()->getModuleName(); ?></td>
+            <td><?php echo $module->getFkCcid()->getFkGroupid()->getGroupName(); ?></td>
+            <td><?php echo $module->getFkCcid()->getFkPeriodid()->getTitle(); ?></td>
+            <td>
+                <div class="dropdown dropdown-menu-right pull-right">
+                    <button class="btn btn-sm btn-info dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                        <i class="glyphicon glyphicon-edit"></i> Actions
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu1">
+                        <li role="presentation">
+                            <a  href="<?php echo $this->url("examination",array("action"=>"capturegrades","id"=>$module->getFkCcid()->getPkCcid())); ?>">Assessments</a>
+                        </li>
+                        <li role="presentation">
+                            <a  href="<?php echo $this->url("examination",array("action"=>"computegrades","id"=>$module->getFkCcid()->getPkCcid())); ?>">Compute grades</a>
+                        </li>                        
+                    </ul>
+                </div>             
+            </td>
+        </tr>
+        <?php
+        }
+        ?>
+        </tbody>
+    </table>
+    <div class="col ">
+    <form class="form-inline" role="form">
+        <div class="form-group">
+            <label for="email">Show:</label>
+            <select class="form-control">
+            <option>10</option>
+            <option>20</option>
+            <option>30</option>
+            <option>50</option>
+            <option>100</option>
+            </select> 
+        </div>
+        <a class="btn btn-success">Download <i class="glyphicon glyphicon-download"></i></a> 
+    </form>    
+    </div>
+
+</div>
+        

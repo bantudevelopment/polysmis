@@ -1,0 +1,66 @@
+<div class="col col-md-10">
+    <h3>Humphrey kumwembe profile</h3>
+    <hr>
+    
+   
+    <legend><blockquote class="panel-warning"> Account information <div class="dropdown dropdown-menu-right pull-right"> <a data-toggle="dropdown" aria-expanded="true" class="btn btn-lg pull-right"><i class="glyphicon glyphicon-th-list"></i></a>
+                                                                    <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu1">
+                                                                        <li role="presentation">
+                                                                            <a id="<?php //echo $counter; ?>" data-toggle="modal" data-target="#formmodal" style="cursor: pointer" >Reset password</a>
+                                                                        </li>
+                                                                        <li role="presentation">
+                                                                            <a  href="<?php //echo $this->url("administration",array("action"=>"lecturers","id"=>$department->getPkDepartmentid())); ?>">Suspend user</a>
+                                                                        </li> 
+                                                                        <li role="presentation">
+                                                                            <a  href="<?php //echo $this->url("administration",array("action"=>"deptprogram","id"=>$department->getPkDepartmentid())); ?>">Delete user</a>
+                                                                        </li> 
+                                                                        <li role="presentation">
+                                                                            <a  href="<?php //echo $this->url("administration",array("action"=>"deptprogram","id"=>$department->getPkDepartmentid())); ?>">Change information</a>
+                                                                        </li> 
+                                                                    </ul>
+                                                                    </div></blockquote></legend>
+    <div class="tab-content " >
+      <div class="row" style="margin: 15px;"> 
+      <div id="home" class="tab-pane fade in active">
+
+          
+
+            <div class="panel">
+                
+                <table class="table">
+                    <tbody>
+                        <tr>
+                        <td>Username:</td>
+                        <td><?php //echo $profile->getFkStudentid()->getFkUserid()->getTitle(); ?></td>
+                        </tr>        
+                        <tr>
+                        <td>Surname:</td>
+                        <td><?php //echo date_format($profile->getFkStudentid()->getDob(),"d M Y"); ?></td>
+                        </tr>
+                        <tr>
+                        <td>First name</td>
+                        <td><?php //echo $profile->getFkStudentid()->getFkUserid()->getGender(); ?></td>
+                        </tr>
+                        <tr>
+                        <td>Gender</td>
+                        <td><?php //echo $profile->getFkStudentid()->getMaritalStatus(); ?></td>
+                        </tr>
+                        <tr>
+                        <td>User group/Role</td>
+                        <td><?php //echo $profile->getFkStudentid()->getMaritalStatus(); ?></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div> 
+           
+           
+
+                        
+      </div>
+
+      
+            
+      </div> 
+    </div>
+</div>
+        

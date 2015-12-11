@@ -1,0 +1,104 @@
+<div class="col col-md-10">
+    <h3>Class List</h3>
+    <hr>
+    <div class="row">
+    <div class="col col-md-8">
+        
+        <form class="form-inline  text-left" role="form" method="POST">
+        <div class="form-group">
+            <label for="email">Filter your search:</label>
+            <select class="form-control" name="group">
+            <option>--Class--</option>
+            <?php
+            foreach($classes as $class){
+            ?>
+            <option value="<?php echo $class->getPkGroupid(); ?>"><?php echo $class->getGroupCode(); ?></option>
+            
+            <?php
+            }
+            ?>
+            </select> 
+        </div>
+        <div class="form-group">
+            <select class="form-control" name="period">
+            <option>--Academic Year--</option>
+             <?php
+            foreach($periods as $period){
+            ?>
+            <option value="<?php echo $period->getPkPeriodid(); ?>"><?php echo $period->getTitle(); ?></option>
+             <?php
+            }
+            ?>
+            </select> 
+        </div> 
+        <div class="form-group">
+            <select class="form-control" name="status">
+                <option value="">--Status--</option>
+            <option value="1">Registered</option>
+            <option value="0">Not registered</option>
+            </select> 
+        </div>          
+         <input type="submit" name="search" value="Show Data" class="btn btn-primary">
+    </form>        
+
+    </div>
+
+    
+</div>
+    <hr>
+    <legend><blockquote class="panel-warning"><?php echo $title; ?></blockquote></legend>
+    <?php
+    
+    if(!empty($studentlist)){
+    ?>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Count</th>
+                <th>Registration #</th>
+                <th>Last name</th>
+                <th>First name</th>
+                <th>Gender</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            $count = 1;
+            foreach($studentlist as $student){
+            ?>
+        <tr>
+            <td><?php echo $count; ?></td>
+            <td><?php echo $student['PROGRAM']->getRegistrationNumber(); ?></td>
+            <td><?php echo $student['CLASS']->getFkStudentid()->getFkUserid()->getSurname(); ?></td>
+            <td><?php echo $student['CLASS']->getFkStudentid()->getFkUserid()->getFirstname(); ?></td>
+            <td><?php echo $student['CLASS']->getFkStudentid()->getFkUserid()->getGender(); ?></td>
+            <td><?php echo ($student['CLASS']->getIsRegistered())?'Registered':"Not registered"; ?></td>
+        </tr>
+        <?php
+        $count++;
+            }
+        ?>
+        </tbody>
+    </table>
+    <div class="col ">
+    <form class="form-inline" role="form">
+        <div class="form-group">
+            <label for="email">Show:</label>
+            <select class="form-control">
+            <option>10</option>
+            <option>20</option>
+            <option>30</option>
+            <option>50</option>
+            <option>100</option>
+            </select> 
+        </div>
+        <a class="btn btn-success">Download <i class="glyphicon glyphicon-download"></i></a> 
+    </form>    
+    </div>
+    
+    <?php
+    }
+    ?>
+</div>
+        

@@ -1,0 +1,90 @@
+<div class="row">
+<div class="col col-md-2">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="form-group"><input class="form-control" placeholder="Search academic year" /></div>
+                
+            </div>
+        </div>
+    </div>
+        <div class="col col-md-10">
+            <div class="panel panel-default">
+            <h3 class="page-header"><?php echo $academicyear->getAcyr(); ?> Semesters</h3>
+            <div class="panel-body">
+                <div class="col text-right"><a href="<?php echo $this->url("administration",array("action"=>"semesterform","id"=>$academicyear->getPkAcademicperiodid())); ?>" class="btn btn-primary">Add New</a>&nbsp;<a href="<?php echo $this->url("administration",array("action"=>"academicperiod")); ?>" class="btn btn-warning">Back</a>  </div>
+            <hr>
+            <?php
+            if(!empty($msg)){
+            ?>
+            <div class="alert alert-success">
+                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                <?php echo $msg; ?>
+            </div>
+            <?php
+            }
+            ?>
+<table class="table table-bordered table-striped table-hover">
+    <thead>
+      <tr>
+        <th>Semester</th>
+        <th>Start date</th>
+        <th>End date</th>
+        <th width="50"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php
+      foreach($periods as $period){
+      ?>
+
+      <tr>
+        <td><?php echo $period->getAcyr(); ?></td>
+        <td><?php echo date_format($period->getStartDate(),"d M Y"); ?></td>
+        <td><?php echo date_format($period->getEndDate(),"d M Y"); ?></td>
+        <td><div class="dropdown dropdown-menu-right pull-right">
+                    <button class="btn btn-sm btn-info dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                        <i class="glyphicon glyphicon-edit"></i> Actions
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu1">
+                        <li role="presentation">
+                            <a title="modify" id="<?php //echo $counter; ?>" href="<?php echo $this->url("administration",array("action"=>"semesterform","id"=>$academicyear->getPkAcademicperiodid(),"subid"=>$period->getPkAcademicperiodid())); ?>"  ><i class="glyphicon glyphicon-edit"></i> Edit</a>
+                        </li>
+                        <li role="presentation">
+                            <a  href="<?php //echo $this->url("administration",array("action"=>"lecturers","id"=>$department->getPkDepartmentid())); ?>"><i class="glyphicon glyphicon-remove"></i> Delete</a>
+                        </li> 
+                        <li role="presentation">
+                            <a  href="<?php echo $this->url("administration",array("action"=>"departments","id"=>$academicyear->getPkAcademicperiodid(),"subid"=>$period->getPkAcademicperiodid())); ?>"><i class="glyphicon glyphicon-list"></i> Settings</a>
+                        </li> 
+                    </ul>
+                </div>    </td>
+      </tr>
+      <?php
+      }
+      ?>
+    </tbody>
+</table>
+                <div class="col ">
+  <form class="form-inline" role="form">
+    <div class="form-group">
+      <label for="email">Show:</label>
+
+<select class="form-control">
+  <option>10</option>
+  <option>20</option>
+  <option>30</option>
+  <option>50</option>
+  <option>100</option>
+</select> 
+       
+          
+    </div>
+
+      <a class="btn btn-success">Download <i class="glyphicon glyphicon-download"></i></a> 
+                 
+               </div>
+            </div>
+                </div>
+        </div>
+</div>
+        

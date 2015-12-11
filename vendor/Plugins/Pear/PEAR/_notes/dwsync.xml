@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="Autoloader.php" server="41.70.16.50//var/www/saris/" local="129406734180000000" remote="129406734180000000" Dst="0" />
+<file name="Builder.php" server="41.70.16.50//var/www/saris/" local="129406734180000000" remote="129406734180000000" Dst="0" />
+<file name="Command.php" server="41.70.16.50//var/www/saris/" local="129406734180000000" remote="129406734180000000" Dst="0" />
+<file name="Common.php" server="41.70.16.50//var/www/saris/" local="129406734180000000" remote="129406734180000000" Dst="0" />
+<file name="Config.php" server="41.70.16.50//var/www/saris/" local="129406735740000000" remote="129406735740000000" Dst="0" />
+<file name="Dependency.php" server="41.70.16.50//var/www/saris/" local="129406734180000000" remote="129406734180000000" Dst="0" />
+<file name="Downloader.php" server="41.70.16.50//var/www/saris/" local="129406734180000000" remote="129406734180000000" Dst="0" />
+<file name="ErrorStack.php" server="41.70.16.50//var/www/saris/" local="129406734180000000" remote="129406734180000000" Dst="0" />
+<file name="Exception.php" server="41.70.16.50//var/www/saris/" local="129406734180000000" remote="129406734180000000" Dst="0" />
+<file name="Installer.php" server="41.70.16.50//var/www/saris/" local="129406734180000000" remote="129406734180000000" Dst="0" />
+<file name="PackageFileManager.php" server="41.70.16.50//var/www/saris/" local="129406734200000000" remote="129406734200000000" Dst="0" />
+<file name="Packager.php" server="41.70.16.50//var/www/saris/" local="129406734200000000" remote="129406734200000000" Dst="0" />
+<file name="Registry.php" server="41.70.16.50//var/www/saris/" local="129406734200000000" remote="129406734200000000" Dst="0" />
+<file name="Remote.php" server="41.70.16.50//var/www/saris/" local="129406734200000000" remote="129406734200000000" Dst="0" />
+<file name="RunTest.php" server="41.70.16.50//var/www/saris/" local="129406734200000000" remote="129406734200000000" Dst="0" />
+<file name="WebInstaller.php" server="41.70.16.50//var/www/saris/" local="129406734200000000" remote="129406734200000000" Dst="0" />
+</dwsync>

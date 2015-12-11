@@ -1,0 +1,67 @@
+<script type="text/javascript">
+    var is_xmlhttprequest = <?php echo $is_xmlhttprequest; ?>;
+    var urlform           = '<?php echo $this->url($controller, array('action'=>$action)); ?>';
+</script>
+<div id="formmodal" class="modal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+  <?php
+  $form->setAttributes(array('name'=>'formsubmit'));
+  echo $this->form()->openTag($form);
+ 
+  ?>
+    <div class="modal-dialog modal-body">
+        
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="formtitle">Placeholder<span id="user"></span></h4>
+        </div>
+        <div class="modal-body">
+            <div class="alert alert-info" role="alert">
+                <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                
+                All fields are required
+              </div>
+             
+            <div class="alert alert-success" title="success" id="success" role="alert"></div>
+            <div class="alert alert-danger" title="warning" id="warning" role="alert">
+                <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
+            </div>
+            <?php
+            foreach($form as $elements){
+                if(count($elements)>1){
+
+                    foreach($elements->getElements() as $element){
+            ?>
+            <div> 
+            <?php
+             echo $this->formLabel($element);
+             echo $this->formElement($element);
+            ?>
+            </div>
+            <?php
+                    }
+                }else{
+            ?>
+            <div> 
+            <?php
+             echo $this->formLabel($elements);
+             echo $this->formElement($elements);
+            ?>
+            </div>
+            <?php
+                }
+            }
+            ?>
+             
+         
+        </div>
+       <div class="modal-footer">
+           <button name="btnSave" value="1" id="btnSave" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-floppy-save " aria-hidden="true"></span>&nbsp;Save</button>
+      </div>
+    </div>
+  </div>
+ <?php
+ echo $this->form()->closeTag();
+ ?>
+    
+</div>

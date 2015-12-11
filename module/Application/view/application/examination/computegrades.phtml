@@ -1,0 +1,114 @@
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#autosave").click(function(){
+      $("input[name='saveaverage']").val(1);
+      $("form[name='frmcompute']").submit();
+  });
+});
+</script>
+<div class="col col-md-10">
+    <h3>Compute grade</h3>
+    <hr>
+    <div class="row">
+    <div class="col col-md-8">
+        <h4><strong>Course :</strong> <?php echo $module->getFkModuleid()->getModuleName()."({$module->getFkPeriodid()->getTitle()}) - {$module->getFkGroupid()->getGroupCode()}"; ?></h4>
+    </div>
+
+    <div class="col col-md-4 text-right">
+        <a class="btn btn-primary" href="<?php echo $this->url("examination",array("action"=>"exammanagement")); ?>">Subjects</a>
+    </div>     
+    </div>
+    <hr>
+    <form method="POST" action="" name="frmcompute">
+    <table class="table table-bordered table-hover">
+        <thead>
+        
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                
+                <?php
+                foreach ($assessments as $assessment){
+                    $moduleweighting = ($assessment['TYPECODE'] != 'EXAM')?$assessment['CWKWEIGHT']:$assessment['EXAMWEIGHT'];
+                    $assignmentsettings[$assessment['ASSESSMENTID']] = array("WEIGHTING"=>$assessment['WEIGHTING'],"TYPE"=>$assessment['TYPECODE'],"MODULEWEIGHTING"=>$moduleweighting);
+                    if($assessment['TYPECODE'] != 'EXAM'){
+                ?>
+                <th width="80"><?php echo $assessment['SHORTNAME']; ?><input class="form-control" name="fkAiid[<?php echo $assessment['ASSESSMENTID']; ?>]" value="<?php echo $assessment['WEIGHTING']; ?>" type="text"/></th>
+                <?php
+                    }
+                    $modulecwkweight = $assessment['CWKWEIGHT'];
+                    $moduleexamweight= $assessment['EXAMWEIGHT'];
+                }
+                ?>
+                
+                <th align="right" width="110"><center>Course work <br>(<?php echo $modulecwkweight; ?>%)</center></th>
+                <th align="right" width="130"><center>Exam mark <br>(<?php echo $moduleexamweight; ?>%)</center></th>
+                <th align="right" width="80">Final<br>&nbsp;</th>
+            </tr>   
+        </thead>
+        <tbody>
+       <?php
+       foreach($students as $student){
+           
+       ?>
+        <tr>
+            <td><?php echo $student['REGISTRATIONNO']; ?></td>
+            <td><?php echo $student['SURNAME']." ".$student['FIRSTNAME']; ?></td>
+            <td>M</td>
+            <?php
+            $count = 0;
+            $averagecwk = 0;
+            $finalgrade = 0;
+            foreach($student['MARKS'] as $assessmentid=>$mark){
+                if($assignmentsettings[$assessmentid]['TYPE'] != 'EXAM'){
+                $averagecwk += ($mark['MARK'] * ($assignmentsettings[$assessmentid]['WEIGHTING']/100));
+            ?>
+            <td align="center"><?php echo $mark['MARK']; ?></td>
+            <?php
+                    $modulewaighting = $assignmentsettings[$assessmentid]['MODULEWEIGHTING'];
+                    $count++;
+                }
+            }
+            //die();
+            $cwkMark = $averagecwk/$count;
+            $finalgrade += (($modulewaighting/100) * $cwkMark);
+            ?>
+            <td align="center">
+                <?php echo round($cwkMark); ?>
+            </td>
+            <td align="center">
+            <?php
+            foreach($student['MARKS'] as $assessmentid=>$mark){
+                
+                if($assignmentsettings[$assessmentid]['TYPE'] == 'EXAM'){
+                    
+                    $finalgrade += (($assignmentsettings[$assessmentid]['MODULEWEIGHTING']/100) * $mark['MARK']);
+            ?>
+                <strong><?php echo $mark['MARK']; ?></strong>
+            <?php
+                }
+            }
+            ?>
+            </td>
+            <td align="center">
+                <strong><input class="form-control" readonly="" name="studentaveragemark[<?php echo $student['STUDENTID']; ?>]" value="<?php echo round($finalgrade); ?>" type="text"/></strong>
+            </td>
+        </tr>
+        <?php
+       }
+        ?>
+       
+        </tbody>
+    </table>
+        <input type="hidden" name="saveaverage" value="" />
+        <input type="hidden" name="subjectid" value="<?php echo $module->getPkCcid(); ?>" />
+    </form>
+    <div class="col ">
+    
+        <a class="btn btn-success">Download <i class="glyphicon glyphicon-download"></i></a> 
+        <a class="btn btn-primary" onclick="frmcompute.submit()">Recompute <i class="glyphicon glyphicon-check"></i></a>
+        <a class="btn btn-primary" id="autosave">Save <i class="glyphicon glyphicon-save"></i></a>
+    </div>
+
+</div>

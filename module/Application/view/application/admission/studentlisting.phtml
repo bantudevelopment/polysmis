@@ -1,0 +1,38 @@
+<div class="col col-md-10">
+    <h3>Student listing (Search)</h3>
+    <hr>
+    <table class="table table-bordered table-hover" id="searchable">
+        <thead>
+            <tr>
+                <th>Count</th>
+                <th>Registration #</th>
+                <th>Last name</th>
+                <th>First name</th>
+                <th>Gender</th>
+                <th width="30"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            $count = 1;
+            foreach($students as $student){
+
+            ?>
+        <tr>
+            <td><?php echo $count; ?></td>
+            <td><?php echo $student->getRegistrationNumber(); ?></td>
+            <td><?php echo $student->getFkStudentid()->getFkUserid()->getSurname(); ?></td>
+            <td><?php echo $student->getFkStudentid()->getFkUserid()->getFirstname(); ?></td>
+            <td><?php echo $student->getFkStudentid()->getFkUserid()->getGender(); ?></td>
+            <td><a href="<?php echo $this->url("admission",array("action"=>"studentprofile","id"=>$student->getFkStudentid()->getPkStudentid())); ?>" class="btn btn-info btn-sm"><i class="glyphicon glyphicon-eye-open"></i> View</a></td>
+        </tr>
+        <?php
+        $count++;
+            }
+        ?>
+        </tbody>
+    </table>
+    
+    
+</div>
+        

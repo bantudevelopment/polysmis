@@ -1,0 +1,12 @@
+<script type="text/javascript">
+    function Zend\ProgressBar\Update(data)
+    {
+        document.getElementById('zend-progressbar-done').style.width =
+             data.percent + '%';
+    }
+</script>
+<div id="zend-progressbar-container">
+    <div id="zend-progressbar-done"></div>
+</div>
+
+<iframe src="<?php echo $this->url("examination",array("action"=>"test")); ?>" id="long-running-process"></iframe>

@@ -1,0 +1,151 @@
+<div class="row">
+        <div class="col col-md-12">
+            <div class="col col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <h4 class="page-header">User details</h4>
+                    <div class="panel-body">
+<?php
+    
+    $form->setAttributes(array('name'=>'formsubmit','class'=>'form-horizontal'))->prepare();
+    echo $this->form()->openTag($form);
+    $username  = (!empty($details))?$details->getUsername():$form->get('User')->get('username')->getValue();
+    $title = (!empty($details))?$details->getTitle():$form->get('User')->get('basicdetails')->get('title')->getValue();
+    $firstname   = (!empty($details))?$details->getFirstname():$form->get('User')->get('basicdetails')->get('firstname')->getValue();
+    $surname   = (!empty($details))?$details->getSurname():$form->get('User')->get('basicdetails')->get('surname')->getValue();
+    $gender   = (!empty($details))?$details->getGender():$form->get('User')->get('basicdetails')->get('gender')->getValue();
+    $othernames   = (!empty($details))?$details->getOthernames():$form->get('User')->get('basicdetails')->get('othernames')->getValue();
+    $emailaddress  = (!empty($details))?$details->getEmailaddress():$form->get('User')->get('emailaddress')->getValue();
+    $id        = (!empty($details))?$details->getPkUserid():$form->get('User')->get('pkUserid')->getValue();
+ ?>
+                            
+    
+
+    <div class="form-group">   
+       <div class="col-sm-3"><?php echo $this->formLabel($form->get('User')->get('basicdetails')->get('title')); ?> </div>
+       <div class="col-sm-5">
+           <?php echo $this->formElement($form->get('User')->get('basicdetails')->get('title')->setValue($title)); ?>
+           <?php echo $this->formHidden($form->get('User')->get('pkUserid')->setValue($id)); ?>
+       </div>
+       <div class="col-sm-4"><?php echo $this->formElementErrors($form->get('User')->get('basicdetails')->get('title')); ?></div>
+    </div>
+    
+    <div class="form-group">   
+       <div class="col-sm-3"><?php echo $this->formLabel($form->get('User')->get('basicdetails')->get('firstname')); ?> </div>
+       <div class="col-sm-5">
+           <?php echo $this->formElement($form->get('User')->get('basicdetails')->get('firstname')->setValue($firstname)); ?>
+           <?php //echo $this->formHidden($form->get('Faculty')->get('pkFacultyid')->setValue($id)); ?>
+       </div>
+       <div class="col-sm-4"><?php echo $this->formElementErrors($form->get('User')->get('basicdetails')->get('firstname')); ?></div>
+    </div> 
+                        
+     <div class="form-group">   
+       <div class="col-sm-3"><?php echo $this->formLabel($form->get('User')->get('basicdetails')->get('surname')); ?> </div>
+       <div class="col-sm-5">
+           <?php echo $this->formElement($form->get('User')->get('basicdetails')->get('surname')->setValue($surname)); ?>
+           <?php //echo $this->formHidden($form->get('Faculty')->get('pkFacultyid')->setValue($id)); ?>
+       </div>
+       <div class="col-sm-4"><?php echo $this->formElementErrors($form->get('User')->get('basicdetails')->get('surname')); ?></div>
+    </div>  
+                        
+    <div class="form-group">   
+       <div class="col-sm-3"><?php echo $this->formLabel($form->get('User')->get('basicdetails')->get('othernames')); ?> </div>
+       <div class="col-sm-5">
+           <?php echo $this->formElement($form->get('User')->get('basicdetails')->get('othernames')->setValue($othernames)); ?>
+           <?php //echo $this->formHidden($form->get('Faculty')->get('pkFacultyid')->setValue($id)); ?>
+       </div>
+       <div class="col-sm-4"><?php echo $this->formElementErrors($form->get('User')->get('basicdetails')->get('othernames')); ?></div>
+    </div>   
+                        
+     <div class="form-group">   
+       <div class="col-sm-3"><?php echo $this->formLabel($form->get('User')->get('basicdetails')->get('gender')); ?> </div>
+       <div class="col-sm-5">
+           <?php echo $this->formElement($form->get('User')->get('basicdetails')->get('gender')->setValue($gender)); ?>
+           <?php //echo $this->formHidden($form->get('Faculty')->get('pkFacultyid')->setValue($id)); ?>
+       </div>
+       <div class="col-sm-4"><?php echo $this->formElementErrors($form->get('User')->get('basicdetails')->get('gender')); ?></div>
+    </div>  
+                        <hr> 
+    <div class="form-group">   
+       <div class="col-sm-3"><?php echo $this->formLabel($form->get('Staff')->get('fkDeptid')); ?> </div>
+       <div class="col-sm-5">
+           <?php echo $this->formElement($form->get('Staff')->get('fkDeptid')); ?>
+           <?php //echo $this->formHidden($form->get('Faculty')->get('pkFacultyid')->setValue($id)); ?>
+       </div>
+       <div class="col-sm-4"><?php echo $this->formElementErrors($form->get('Staff')->get('fkDeptid')); ?></div>
+    </div>     
+    <div class="form-group">   
+       <div class="col-sm-3"><?php echo $this->formLabel($form->get('Staff')->get('workmode')); ?> </div>
+       <div class="col-sm-5">
+           <?php echo $this->formElement($form->get('Staff')->get('workmode')); ?>
+           <?php //echo $this->formHidden($form->get('Faculty')->get('pkFacultyid')->setValue($id)); ?>
+       </div>
+       <div class="col-sm-4"><?php echo $this->formElementErrors($form->get('Staff')->get('workmode')); ?></div>
+    </div>
+    <div class="form-group">   
+       <div class="col-sm-3"><?php echo $this->formLabel($form->get('ishead')); ?> </div>
+       <div class="col-sm-5">
+           <?php echo $this->formElement($form->get('ishead')); ?>
+           <?php //echo $this->formHidden($form->get('Faculty')->get('pkFacultyid')->setValue($id)); ?>
+       </div>
+       <div class="col-sm-4"><?php echo $this->formElementErrors($form->get('ishead')); ?></div>
+    </div>  
+                        
+                        <hr>                  
+    
+    <div class="form-group">   
+       <div class="col-sm-3"><?php echo $this->formLabel($form->get('User')->get('emailaddress')); ?> </div>
+       <div class="col-sm-5">
+           <?php echo $this->formElement($form->get('User')->get('emailaddress')->setValue($emailaddress)); ?>
+           <?php //echo $this->formHidden($form->get('Faculty')->get('pkFacultyid')->setValue($id)); ?>
+       </div>
+       <div class="col-sm-4"><?php echo $this->formElementErrors($form->get('User')->get('emailaddress')); ?></div>
+    </div>
+    <div class="form-group">   
+       <div class="col-sm-3"><?php echo $this->formLabel($form->get('User')->get('username')); ?> </div>
+       <div class="col-sm-5">
+           <?php echo $this->formElement($form->get('User')->get('username')->setValue($username)); ?>
+           <?php //echo $this->formHidden($form->get('Faculty')->get('pkFacultyid')->setValue($id)); ?>
+       </div>
+       <div class="col-sm-4"><?php echo $this->formElementErrors($form->get('User')->get('username')); ?></div>
+    </div>
+    <div class="form-group">   
+       <div class="col-sm-3"><?php echo $this->formLabel($form->get('password')); ?> </div>
+       <div class="col-sm-5">
+           <?php echo $this->formElement($form->get('password')); ?>
+           <?php //echo $this->formHidden($form->get('Faculty')->get('pkFacultyid')->setValue($id)); ?>
+       </div>
+       <div class="col-sm-4"><?php echo $this->formElementErrors($form->get('password')); ?></div>
+    </div>
+    <div class="form-group">   
+       <div class="col-sm-3"><?php echo $this->formLabel($form->get('cpassword')); ?> </div>
+       <div class="col-sm-5">
+           <?php echo $this->formElement($form->get('cpassword')); ?>
+           <?php //echo $this->formHidden($form->get('Faculty')->get('pkFacultyid')->setValue($id)); ?>
+       </div>
+       <div class="col-sm-4"><?php echo $this->formElementErrors($form->get('cpassword')); ?></div>
+    </div>
+                        <div class="form-group">   
+       <div class="col-sm-3"><?php echo $this->formLabel($form->get('fkRoleid')); ?> </div>
+       <div class="col-sm-5">
+           <?php echo $this->formElement($form->get('fkRoleid')); ?>
+           <?php //echo $this->formHidden($form->get('Faculty')->get('pkFacultyid')->setValue($id)); ?>
+       </div>
+       <div class="col-sm-4"><?php echo $this->formElementErrors($form->get('fkRoleid')); ?></div>
+    </div>
+    <div class="form-group">   
+       <div class="col-sm-3"></div>
+       <div class="col-sm-5">
+           <input type="submit" name="save" class="btn btn-success" value="Save" />
+           <a href="<?php echo $this->url("administration",array("action"=>"users")); ?>" class="btn btn-warning">Cancel</a>
+       </div>
+       <div class="col-sm-4"></div>
+    </div>                            
+<?php
+ echo $this->form()->closeTag();
+?>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

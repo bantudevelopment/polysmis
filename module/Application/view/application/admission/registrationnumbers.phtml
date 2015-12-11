@@ -1,0 +1,53 @@
+<div class="col col-md-10">
+    <h3>Page Title</h3>
+    <hr>
+    <div class="col text-right">
+        <a href="<?php echo $this->url("admission",array("action"=>"generateregistrationnumbers")); ?>" class="btn btn-primary">Generate Registration Numbers</a>     
+
+    </div>
+    <hr>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Registration Number</th>
+                <th>Programme</th>
+                <th>Controls</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>John</td>
+                <td>Doe</td>
+                <td>201530020</td>
+                <td>IMIS 1</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>John</td>
+                <td>Doe</td>
+                <td>201530020</td>
+                <td>IMIS 1</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="col ">
+    <form class="form-inline" role="form">
+        <div class="form-group">
+            <label for="email">Show:</label>
+            <select class="form-control">
+            <option>10</option>
+            <option>20</option>
+            <option>30</option>
+            <option>50</option>
+            <option>100</option>
+            </select> 
+        </div>
+        <a class="btn btn-success">Download <i class="glyphicon glyphicon-download"></i></a> 
+    </form>    
+    </div>
+</div>
+        
+        

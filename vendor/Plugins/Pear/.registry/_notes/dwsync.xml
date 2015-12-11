@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="archive_tar.reg" server="41.70.16.50//var/www/saris/" local="129406734160000000" remote="129406734160000000" Dst="0" />
+<file name="cache.reg" server="41.70.16.50//var/www/saris/" local="129406734160000000" remote="129406734160000000" Dst="0" />
+<file name="config.reg" server="41.70.16.50//var/www/saris/" local="129406734160000000" remote="129406734160000000" Dst="0" />
+<file name="console_getargs.reg" server="41.70.16.50//var/www/saris/" local="129406734160000000" remote="129406734160000000" Dst="0" />
+<file name="console_getopt.reg" server="41.70.16.50//var/www/saris/" local="129406734160000000" remote="129406734160000000" Dst="0" />
+<file name="console_table.reg" server="41.70.16.50//var/www/saris/" local="129406734160000000" remote="129406734160000000" Dst="0" />
+<file name="date.reg" server="41.70.16.50//var/www/saris/" local="129406734160000000" remote="129406734160000000" Dst="0" />
+<file name="db.reg" server="41.70.16.50//var/www/saris/" local="129406734160000000" remote="129406734160000000" Dst="0" />
+<file name="file.reg" server="41.70.16.50//var/www/saris/" local="129406734160000000" remote="129406734160000000" Dst="0" />
+<file name="file_find.reg" server="41.70.16.50//var/www/saris/" local="129406734160000000" remote="129406734160000000" Dst="0" />
+<file name="file_searchreplace.reg" server="41.70.16.50//var/www/saris/" local="129406734160000000" remote="129406734160000000" Dst="0" />
+<file name="html_template_it.reg" server="41.70.16.50//var/www/saris/" local="129406734160000000" remote="129406734160000000" Dst="0" />
+<file name="http.reg" server="41.70.16.50//var/www/saris/" local="129406734160000000" remote="129406734160000000" Dst="0" />
+<file name="http_request.reg" server="41.70.16.50//var/www/saris/" local="129406734160000000" remote="129406734160000000" Dst="0" />
+<file name="log.reg" server="41.70.16.50//var/www/saris/" local="129406734160000000" remote="129406734160000000" Dst="0" />
+<file name="mail.reg" server="41.70.16.50//var/www/saris/" local="129406734160000000" remote="129406734160000000" Dst="0" />
+<file name="mail_mime.reg" server="41.70.16.50//var/www/saris/" local="129406734160000000" remote="129406734160000000" Dst="0" />
+<file name="net_curl.reg" server="41.70.16.50//var/www/saris/" local="129406734160000000" remote="129406734160000000" Dst="0" />
+<file name="net_dict.reg" server="41.70.16.50//var/www/saris/" local="129406734160000000" remote="129406734160000000" Dst="0" />
+<file name="net_geo.reg" server="41.70.16.50//var/www/saris/" local="129406734160000000" remote="129406734160000000" Dst="0" />
+<file name="net_ipv4.reg" server="41.70.16.50//var/www/saris/" local="129406734160000000" remote="129406734160000000" Dst="0" />
+<file name="net_smtp.reg" server="41.70.16.50//var/www/saris/" local="129406734160000000" remote="129406734160000000" Dst="0" />
+<file name="net_socket.reg" server="41.70.16.50//var/www/saris/" local="129406734160000000" remote="129406734160000000" Dst="0" />
+<file name="net_url.reg" server="41.70.16.50//var/www/saris/" local="129406734160000000" remote="129406734160000000" Dst="0" />
+<file name="net_useragent_detect.reg" server="41.70.16.50//var/www/saris/" local="129406734160000000" remote="129406734160000000" Dst="0" />
+<file name="net_whois.reg" server="41.70.16.50//var/www/saris/" local="129406734160000000" remote="129406734160000000" Dst="0" />
+<file name="pager.reg" server="41.70.16.50//var/www/saris/" local="129406734160000000" remote="129406734160000000" Dst="0" />
+<file name="pear.reg" server="41.70.16.50//var/www/saris/" local="129406734160000000" remote="129406734160000000" Dst="0" />
+<file name="pear_frontend_web.reg" server="41.70.16.50//var/www/saris/" local="129406734160000000" remote="129406734160000000" Dst="0" />
+<file name="pear_packagefilemanager.reg" server="41.70.16.50//var/www/saris/" local="129406734160000000" remote="129406734160000000" Dst="0" />
+<file name="phpunit.reg" server="41.70.16.50//var/www/saris/" local="129406734160000000" remote="129406734160000000" Dst="0" />
+<file name="system_command.reg" server="41.70.16.50//var/www/saris/" local="129406734160000000" remote="129406734160000000" Dst="0" />
+<file name="xml_parser.reg" server="41.70.16.50//var/www/saris/" local="129406734160000000" remote="129406734160000000" Dst="0" />
+<file name="xml_rpc.reg" server="41.70.16.50//var/www/saris/" local="129406734160000000" remote="129406734160000000" Dst="0" />
+<file name="xml_util.reg" server="41.70.16.50//var/www/saris/" local="129406734160000000" remote="129406734160000000" Dst="0" />
+</dwsync>

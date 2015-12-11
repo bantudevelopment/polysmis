@@ -1,0 +1,66 @@
+<div class="col col-md-10">
+    <h3>Import confirmation</h3>
+
+    <hr>
+    
+    <table class="table table-bordered table-hover" id="tblData">
+        <?php
+        $counter = 1;
+        $errors  = 0;
+        foreach($list as $content){
+           if($content['ISHEADER']){ 
+        ?>
+        <thead>
+            <tr>
+                <th width="150"><?php echo $content[0]; ?></th>
+                <th><?php echo $content[1]; ?></th>
+                <th><?php echo $content[3]; ?>%</th>
+                <th width="300"></th>
+            </tr>
+            <tr>
+                <th></th>
+                <th>Registration number</th>
+                <th>Mark</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <?php
+           }else{
+              if(!empty($content["ERRORS"])){
+                  $errors++;
+              } 
+        ?>
+        <tbody>
+        
+        <tr>
+            <td><?php //echo $counter; ?></td>
+            <td><?php echo $content[0]; ?></td>
+            <td><?php echo $content[1]; ?></td>
+            <td><?php echo implode("<br>", $content["ERRORS"]); ?></td>
+           
+            
+            
+        </tr>
+       
+        </tbody>
+        <?php
+                $counter++;
+           }
+        
+        }
+       ?>
+    </table>
+    <div class="col ">
+        <form class="form-inline" role="form" method="POST">
+            <?php
+            if($errors == 0){
+            ?>
+            <a class="btn btn-success" href="<?php echo $this->url("examination",array("action"=>"saveassessmentimport","id"=>$id)); ?>">Save assessments <i class="glyphicon glyphicon-save"></i></a>
+            <?php
+            }
+            ?>
+            <a class="btn btn-warning" href="<?php echo $this->url("examination",array("action"=>"discardimport","id"=>$id)); ?>">Discard<i class="glyphicon glyphicon-step-backward"></i></a> 
+    </form>    
+    </div>
+</div>
+        

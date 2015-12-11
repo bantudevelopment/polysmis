@@ -1,0 +1,256 @@
+<script type="text/javascript">
+$(document).ready(function(){
+    $(".generalpanel").hide();
+    $("#details").show("slow");
+    
+    $("a[title='cancel']").click(function(){
+        $(".generalpanel").hide();
+        $("#details").show("slow");
+    });
+    
+    $("#resetpassworditem").click(function(){
+        $(".generalpanel").hide("slow");
+        $("#resetpassword").show("slow");
+    });
+    
+    $("#changebasicinformationitem").click(function(){
+        $(".generalpanel").hide("slow");
+        $("#changebasicinformation").show("slow");
+    });
+    
+   
+    $("#changedepartmentinformationitem").click(function(){
+        $(".generalpanel").hide("slow");
+        $("#changedepartmentinformation").show("slow");
+    });
+});
+</script>
+<div class="row">
+        <div class="col col-md-12">
+            <div class="col col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col col-md-2">
+                            <img src="<?php echo $this->basePath(); ?>/img/placeholder.jpe" alt="" height="100px" class="img-circle">
+                            </div>
+                            <div class="col col-md-10">
+                                <h3><?php echo strtoupper($user->getFirstname()." ".$user->getSurname()); ?></h3>
+                                <h5><?php echo $user->getEmailaddress(); ?></h5>
+                                <h5><?php echo $user->getUsername(); ?></h5>
+                            </div>
+                        </div>
+                    </div>   
+                </div>
+                
+                
+                <div class="generalpanel panel panel-default" id="resetpassword">
+                    <h4 class="page-header">Reset password</h4>
+                    <div class="panel-body">
+                        <?php
+                        $resetform->setAttributes(array('name'=>'formsubmit','class'=>'form-horizontal'))->prepare();
+                        echo $this->form()->openTag($resetform);
+                        
+                        ?>
+                       
+                            
+                            <div class="form-group">   
+                                <div class="col-sm-2"><?php echo $this->formLabel($resetform->get('Password')->get('password')); ?> </div>
+                                <div class="col-sm-5">
+                                    <?php echo $this->formHidden($resetform->get('Password')->get('pkUserid')->setValue($user->getPkUserid()));
+                                          echo $this->formElement($resetform->get('Password')->get('password'));
+                                    ?>
+                                </div>
+                                <div class="col-sm-4"><?php echo $this->formElementErrors($resetform->get('Password')->get('password')); ?></div>
+                             </div>
+                        
+                            <div class="form-group">   
+                                <div class="col-sm-2"><?php echo $this->formLabel($resetform->get('Password')->get('cpassword')); ?> </div>
+                                <div class="col-sm-5">
+                                    <?php echo $this->formElement($resetform->get('Password')->get('cpassword')); ?>
+                                </div>
+                                <div class="col-sm-4"><?php echo $this->formElementErrors($resetform->get('Password')->get('cpassword')); ?></div>
+                             </div>
+                             <div class="form-group">   
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-5">
+                                    <input type="submit" name="save" class="btn btn-success" value="Reset" />
+                                    <a title="cancel" class="btn btn-warning">Cancel</a>
+                                </div>
+                                <div class="col-sm-4"></div>
+                             </div> 
+                        
+                    </form>
+                    </div>   
+                </div>
+                
+                
+                
+                
+                 <div class="generalpanel panel panel-default" id="changebasicinformation">
+                    <h4 class="page-header">Change basic information</h4>
+                    <div class="panel-body">
+                <?php
+                $basicform->setAttributes(array('id'=>'frmchangeinfo','class'=>'form-horizontal'))->prepare();
+                echo $this->form()->openTag($basicform);
+
+                ?>
+                        <div class="row form-group">
+                            <div class="col-md-2"><?php echo $this->formLabel($basicform->get('User')->get('basicdetails')->get('title')); ?></div>
+                            <div class="col-md-6"><?php echo $this->formElement($basicform->get('User')->get('basicdetails')->get('title')->setValue($user->getTitle())); ?></div>
+                            <div class="col-md-3"><?php echo $this->formElementErrors($basicform->get('User')->get('basicdetails')->get('title')); ?></div>
+                        </div>
+                      <div class="row form-group">
+                            <div class="col-md-2"><?php echo $this->formLabel($basicform->get('User')->get('basicdetails')->get('firstname')); ?></div>
+                            <div class="col-md-6"><?php echo $this->formElement($basicform->get('User')->get('basicdetails')->get('firstname')->setValue($user->getFirstname()));
+                                                        echo $this->formElement($basicform->get('User')->get('pkUserid')->setValue($user->getPkUserid()))
+                                                   ?>
+                            </div>
+                            <div class="col-md-3"><?php echo $this->formElementErrors($basicform->get('User')->get('basicdetails')->get('firstname')); ?></div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-2"><?php echo $this->formLabel($basicform->get('User')->get('basicdetails')->get('surname')); ?></div>
+                            <div class="col-md-6"><?php echo $this->formElement($basicform->get('User')->get('basicdetails')->get('surname')->setValue($user->getSurname())); ?></div>
+                            <div class="col-md-3"><?php echo $this->formElementErrors($basicform->get('User')->get('basicdetails')->get('surname')); ?></div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-2"><?php echo $this->formLabel($basicform->get('User')->get('basicdetails')->get('othernames')); ?></div>
+                            <div class="col-md-6"><?php echo $this->formElement($basicform->get('User')->get('basicdetails')->get('othernames')->setValue($user->getOthernames())); ?></div>
+                            <div class="col-md-3"><?php echo $this->formElementErrors($basicform->get('User')->get('basicdetails')->get('othernames')); ?></div>
+                        </div>
+                      <div class="row form-group">
+                            <div class="col-md-2"><?php echo $this->formLabel($basicform->get('User')->get('basicdetails')->get('gender')); ?></div>
+                            <div class="col-md-6"><?php echo $this->formElement($basicform->get('User')->get('basicdetails')->get('gender')->setValue($user->getGender())); ?></div>
+                            <div class="col-md-3"><?php echo $this->formElementErrors($basicform->get('User')->get('basicdetails')->get('gender')); ?></div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-2"><?php echo $this->formLabel($basicform->get('User')->get('username')); ?></div>
+                            <div class="col-md-6"><?php echo $this->formElement($basicform->get('User')->get('username')->setValue($user->getUsername())); ?></div>
+                            <div class="col-md-3"><?php echo $this->formElementErrors($basicform->get('User')->get('username')); ?></div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-2"><?php echo $this->formLabel($basicform->get('User')->get('emailaddress')); ?></div>
+                            <div class="col-md-6"><?php echo $this->formElement($basicform->get('User')->get('emailaddress')->setValue($user->getEmailaddress())); ?></div>
+                            <div class="col-md-3"><?php echo $this->formElementErrors($basicform->get('User')->get('emailaddress')); ?></div>
+                        </div>
+                        
+                      <div class="form-group">   
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-5">
+                            <input type="submit" id="btnchange" name="btnchange" class="btn btn-success" value="Save" />
+                            <a title="cancel" class="btn btn-warning">Cancel</a>
+                        </div>
+                        <div class="col-sm-4"></div>
+                     </div> 
+                
+                </form>
+                </div>
+                 </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <div class="generalpanel panel panel-default" id="details">
+                    
+                    <div class="panel-body">
+    
+   
+    <legend><blockquote class="panel-warning"> ACCOUNT INFORMATION <div class="dropdown dropdown-menu-right pull-right"> <a data-toggle="dropdown" aria-expanded="true" class="btn btn-lg pull-right"><i class="glyphicon glyphicon-th-list"></i></a>
+                                                                    <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu1">
+                                                                        <li role="presentation">
+                                                                            <a data-toggle="modal" data-target="#formmodal" id="resetpassworditem" style="cursor: pointer" >Reset password</a>
+                                                                        </li>
+                                                                        <li role="presentation">
+                                                                            <a  href="<?php //echo $this->url("administration",array("action"=>"lecturers","id"=>$department->getPkDepartmentid())); ?>">Suspend user</a>
+                                                                        </li> 
+                                                                         <li role="presentation">
+                                                                            <a style="cursor: pointer" id="changedepartmentinformationitem">Change department info</a>
+                                                                        </li>
+                                                                        <li role="presentation">
+                                                                            <a style="cursor: pointer" id="changebasicinformationitem">Change information</a>
+                                                                        </li> 
+                                                                        <li role="presentation">
+                                                                            <a  href="<?php //echo $this->url("administration",array("action"=>"deptprogram","id"=>$department->getPkDepartmentid())); ?>">Delete user</a>
+                                                                        </li> 
+                                                                    </ul>
+                                                                    </div></blockquote></legend>
+    <div class="tab-content " >
+      <div class="row" style="margin: 15px;"> 
+      <div id="home" class="tab-pane fade in active">
+
+          
+
+            <div class="panel">
+                <h4>Basic information</h4>
+                <div class="row">
+                <div class="col col-xs-2"></div>
+                <div class="col col-xs-2"><strong>Name</strong></div>
+                <div class="col col-xs-5"><?php echo $user->getTitle().". ".$user->getFirstname()." ".$user->getSurname(); ?></div>
+                </div>
+               <div class="row">
+                <div class="col col-xs-2"></div>
+                <div class="col col-xs-2"><strong>Gender</strong></div>
+                <div class="col col-xs-5"><?php echo ($user->getGender()=="M")?"Male":"Female"; ?></div>
+                </div>
+                <h4>Security</h4>
+                <div class="row">
+                <div class="col col-xs-2"></div>
+                <div class="col col-xs-2"><strong>Role</strong></div>
+                <div class="col col-xs-5"><?php echo $user->getFkRoleid()->getDescription(); ?></div>
+                </div>
+               <div class="row">
+                <div class="col col-xs-2"></div>
+                <div class="col col-xs-2"><strong>Status</strong></div>
+                <div class="col col-xs-5">Active</div>
+                </div>
+                <div class="row">
+                <div class="col col-xs-2"></div>
+                <div class="col col-xs-2"><strong>Last login</strong></div>
+                <div class="col col-xs-5"><?php echo ($user->getLastlogindate()!="")?date_format($user->getLastlogindate(),"d M Y h:m"):"Not available"; ?> <br><?php echo $user->getIpaddress(); ?></div>
+                </div>
+                
+                <?php
+                if(!empty($staffdetails)){
+                ?>
+                <h4>Department(<?php echo $staffdetails->getFkDeptid()->getDeptCode(); ?>)</h4>
+           
+               <div class="row">
+                <div class="col col-xs-2"></div>
+                <div class="col col-xs-2"><strong>Work mode</strong></div>
+                <div class="col col-xs-5"><?php echo $staffdetails->getWorkmode(); ?></div>
+                </div>
+                <div class="row">
+                <div class="col col-xs-2"></div>
+                <div class="col col-xs-2"><strong>Is Head</strong></div>
+                <div class="col col-xs-5"><?php echo ($staffdetails->getPkStaffid()== $staffdetails->getFkDeptid()->getFkStaffid()->getPkStaffid())?"Yes":"No"; ?></div>
+                </div>
+                <?php
+                }
+                ?>
+                
+            </div> 
+           
+           
+
+                        
+      </div>
+
+      
+            
+      </div> 
+    </div>
+</div>
+                </div>
+            </div>
+            </div>
+    </div>
+        

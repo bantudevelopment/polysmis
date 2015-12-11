@@ -1,0 +1,152 @@
+<div class="col col-md-10">
+    <h3>Group enrollment</h3>
+    <hr>
+
+    <div class="col text-right">
+        <a href="<?php echo $this->url("admission",array("action"=>"enrollment")); ?>" class="btn btn-primary">Student enrollment</a>  
+    </div>
+    <hr>
+    <p class="text-primary">Note: The following fields must be filled in the spreadsheet;<strong> Surname, First name, Initials, Gender, Class/group, Academic period,Email address,Study mode and Entry Manner.</strong></p>    
+    <hr>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Surname</th>
+                <th>First name</th>
+                <th>Initials</th>
+                <th>Gender</th>
+                <th>Class/group</th>
+                <th>Academic period</th>
+                <th>Email address</th>
+                <th>Entry manner</th>
+                <th>Study mode</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Banda</td>
+            <td>Chifundo</td>
+            <td>M</td>
+            <td>F</td>
+            <td>BME1</td>
+            <td>Jan-Jun 2015</td> 
+            <td>cbanda@gmail.com</td>
+            <td>Generic</td>
+            <td>Full time</td>
+                       
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="col col-md-7">
+        <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading"><strong>Upload file key</strong></div>
+            <div class="panel-body">
+               
+                <div class="col-sm-3  text-right">
+                    <strong>Entry Manner :</strong>
+                </div>
+                <div class="col-sm-9">
+                    <?php
+                    foreach($entrymanners as $entrymanner){
+                     echo $entrymanner->getEntryCode()." = ".$entrymanner->getEntryName(); 
+                    ?>
+                    <br>
+                    <?php
+                    }
+                    ?>
+                </div> 
+                <hr>
+                <div class="col-sm-3  text-right">
+                    <strong>Study mode :</strong>
+                </div>
+                <div class="col-sm-9">
+                    <?php
+                    foreach($studymodes as $mode){
+                     echo $mode->getPkStudymodeid()." = ".$mode->getTitle(); 
+                    ?>
+                    <br>
+                    <?php
+                    }
+                    ?>
+                </div> 
+                               
+              <hr>
+                <div class="col-sm-3  text-right">
+                    <strong>Class/Group :</strong>
+                </div>
+                <div class="col-sm-9">
+                    <?php
+                    foreach($classes as $class){
+                     echo $class->getGroupCode()." = ".$class->getGroupName(); 
+                    ?>
+                    <br>
+                    <?php
+                    }
+                    ?>
+                </div>                
+               <hr />
+                <div class="col-sm-3  text-right">
+                    <strong>Period :</strong>
+                </div>
+               
+                <div class="col-sm-9">
+                    <?php
+                    foreach($academicperiod as $period){
+                     echo $period->getPkPeriodid()." = ".$period->getTitle(); 
+                    ?>
+                    <br>
+                    <?php
+                    }
+                    ?>
+                </div>  
+            </div>
+        </div>        
+    </div> 
+    </div>
+    
+    <div class="col col-md-5">
+        <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading"><strong>Selection upload</strong></div>
+            <div class="panel-body">
+                <?php
+                $uploadform->setAttributes(array('id'=>'formupload'))->prepare();
+                echo $this->form()->openTag($uploadform);
+                ?>
+                
+                    
+                    <div class="form-group">   
+                        <ul>
+                            <li>The file to be uploaded should be formated like the one Here</li>
+                            <li>Click the "Browse" button to browse for the csv file containing the students list. Select the file you want to upload.</li>
+                            <li>Click the 'Upload file' button to start the uploading process.</li>
+                            <li><strong>Note:</strong> The file being uploaded should not have the <strong>headers</strong> i.e <strong>Surname</strong></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="form-group">   
+                        <div class="col-sm-4"><strong><?php echo $this->formLabel($uploadform->get('File')->get('filename')); ?></strong></div>
+                       <div class="col-sm-6">
+                           <strong><?php echo $this->formElement($uploadform->get('File')->get('filename')); ?>
+                       </div>
+                       <div class="col-sm-2"></div>
+                    </div>
+
+                    <div class="form-group">   
+                       <div class="col-sm-4"></div>
+                       <div class="col-sm-6">
+                           <input type="submit" name="btnupload" class="btn btn-success" value="Upload File" />
+                       </div>
+                       <div class="col-sm-2"></div>
+                    </div>                            
+                <?php
+                echo $this->form()->closeTag();
+                ?>
+            </div>
+        </div>        
+    </div>        
+       
+    </div> 
+</div>
