@@ -637,14 +637,17 @@ class AdministrationController extends AbstractActionController
             $resetform->setData($this->request->getPost());
             if($resetform->isValid()){
                 $formData = $resetform->getData();
-                
+                //Get password expiry days
                 $days = $this->preferences->getSystemsettings()->getPasswordExpireydays() + 1;
+                //Set date interval
+                $interval = "P".$days."D";
+                $date = new \DateTime();
+                //Back date password change date
+                $date->sub(new \DateInterval($interval));
                 
                 $user = $this->em->getRepository('\Application\Entity\User')->find($formData['Password']['pkUserid']);
                 $user->setPassword($this->cs->_hashing($formData['Password']['password']));
-                $date = new \DateTime();
-                $interval = "P".$days."D";
-                $date->sub(new \DateInterval($interval));
+                
                 
                 $user->setPasswordlastchanged($date);
                 $this->preferences->saveUser($user);
