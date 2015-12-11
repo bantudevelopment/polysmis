@@ -47,8 +47,8 @@ class FsResetpassword extends Fieldset implements InputFilterProviderInterface
             ),
             'attributes' => array(
                 'required' => 'required',
-                'class'    => 'form-control input-lg',
-                'placeholder' => 'New password'
+                'class'    => 'form-control ',
+                //'placeholder' => 'New password'
             )
         ));
         
@@ -60,8 +60,8 @@ class FsResetpassword extends Fieldset implements InputFilterProviderInterface
             ),
             'attributes' => array(
                 'required' => 'required',
-                'class'    => 'form-control input-lg',
-                'placeholder' => 'Confirm password'
+                'class'    => 'form-control',
+                //'placeholder' => 'Confirm password'
             )
         ));
         

@@ -34,6 +34,7 @@ class Staff extends Usermodel {
         $entity->setGender($formdata['User']['basicdetails']['gender']);
         $entity->setPassword($this->cs->_hashing($formdata['password']));
         $entity->setTitle($formdata['User']['basicdetails']['title']);
+        $entity->setAccounttype("STAFF");
         $entity->setEmailaddress($formdata['User']['emailaddress']);
         $entity->setFkRoleid($roleid);  
         $fkUserid = $this->saveUser($entity);  

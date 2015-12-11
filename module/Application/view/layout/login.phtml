@@ -24,7 +24,6 @@
                 
            
         ; ?>
-
     </head>
     <body>
     <div class="container-fluid main-wrap">
@@ -38,7 +37,7 @@
                     <li class="dropdown">
                       <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php echo $this->identity()->getFirstname(); ?> <span class="caret"></span></a>
                       <ul class="dropdown-menu">
-                        <li><a href="#">Change password</a></li>
+                        <li><a href="<?php echo $this->url("administration",array("action"=>"changepassword")); ?>">Change password</a></li>
                         <li><a href="<?php echo $this->url("home",array("action"=>"logout")); ?>">Logout</a></li>
                       </ul>
                     </li>

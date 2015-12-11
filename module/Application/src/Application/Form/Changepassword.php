@@ -11,7 +11,7 @@ class Changepassword extends Form implements InputFilterProviderInterface
      private $em;
      private $cs;
      
-     public function __construct(\Doctrine\ORM\EntityManager $em = null, \Application\Service\Common $cs= null)
+     public function __construct(\Doctrine\ORM\EntityManager $em = null, \Application\Service\Security $cs= null)
      {
          // we want to ignore the name passed
          parent::__construct('frmreset');
@@ -58,6 +58,7 @@ class Changepassword extends Form implements InputFilterProviderInterface
                                                 \Zend\Validator\Callback::INVALID_VALUE => 'Password does not exist',
                                             ),
                                             'callback' => function($value, $context = array()) {
+           
                                                 $counter = $this->em->getRepository("\Application\Entity\User")->findBy(array("pkUserid"=>$context['Password']['pkUserid'],"password"=>$this->cs->_hashing($value)));
                                                 return (count($counter) <= 0)?false:true;
                                             },

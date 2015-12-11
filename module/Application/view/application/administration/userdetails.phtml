@@ -85,6 +85,50 @@ $(document).ready(function(){
                 </div>
                 
                 
+                <div class="generalpanel panel panel-default" id="changedepartmentinformation">
+                    <h4 class="page-header">Change department information</h4>
+                    <div class="panel-body">
+                        <?php
+                        $deptform->setAttributes(array('name'=>'formsubmit','class'=>'form-horizontal'))->prepare();
+                        echo $this->form()->openTag($deptform);
+                        
+                        ?>
+                       
+                            
+                            <div class="form-group">   
+                                <div class="col-sm-2"><?php echo $this->formLabel($deptform->get('Staff')->get('fkDeptid')); ?> </div>
+                                <div class="col-sm-5">
+                                    <?php echo $this->formHidden($deptform->get('Staff')->get('fkUserid')->setValue($user->getPkUserid()));
+                                          echo $this->formHidden($deptform->get('Staff')->get('pkStaffid')->setValue($staffdetails->getPkStaffid()));
+                                          echo $this->formElement($deptform->get('Staff')->get('fkDeptid')->setValue($staffdetails->getFkDeptid()->getPkDeptid()));
+                                    ?>
+                                </div>
+                                <div class="col-sm-4"><?php echo $this->formElementErrors($deptform->get('Staff')->get('fkDeptid')); ?></div>
+                             </div>
+                        
+                            <div class="form-group">   
+                                <div class="col-sm-2"><?php echo $this->formLabel($deptform->get('Staff')->get('workmode')); ?> </div>
+                                <div class="col-sm-5">
+                                    <?php echo $this->formElement($deptform->get('Staff')->get('workmode')->setValue($staffdetails->getWorkmode())); ?>
+                                </div>
+                                <div class="col-sm-4"><?php echo $this->formElementErrors($deptform->get('Staff')->get('workmode')); ?></div>
+                             </div>
+                             <div class="form-group">   
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-5">
+                                    <input type="submit" name="savedeptinfo" class="btn btn-success" value="Save" />
+                                    <a title="cancel" class="btn btn-warning">Cancel</a>
+                                </div>
+                                <div class="col-sm-4"></div>
+                             </div> 
+                        
+                    </form>
+                    </div>   
+                </div>
+                
+                
+                
+                
                 
                 
                  <div class="generalpanel panel panel-default" id="changebasicinformation">
@@ -183,6 +227,16 @@ $(document).ready(function(){
                                                                         </li> 
                                                                     </ul>
                                                                     </div></blockquote></legend>
+            <?php
+            if(!empty($msg)){
+            ?>
+            <div class="alert alert-success">
+                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                <?php echo $msg; ?>
+            </div>
+            <?php
+            }
+            ?>
     <div class="tab-content " >
       <div class="row" style="margin: 15px;"> 
       <div id="home" class="tab-pane fade in active">
@@ -191,6 +245,7 @@ $(document).ready(function(){
 
             <div class="panel">
                 <h4>Basic information</h4>
+                
                 <div class="row">
                 <div class="col col-xs-2"></div>
                 <div class="col col-xs-2"><strong>Name</strong></div>
@@ -220,19 +275,16 @@ $(document).ready(function(){
                 
                 <?php
                 if(!empty($staffdetails)){
+                    
                 ?>
-                <h4>Department(<?php echo $staffdetails->getFkDeptid()->getDeptCode(); ?>)</h4>
+                <h4>Department(<?php echo $staffdetails->getFkDeptid()->getDeptName(); ?>)</h4>
            
                <div class="row">
                 <div class="col col-xs-2"></div>
                 <div class="col col-xs-2"><strong>Work mode</strong></div>
                 <div class="col col-xs-5"><?php echo $staffdetails->getWorkmode(); ?></div>
                 </div>
-                <div class="row">
-                <div class="col col-xs-2"></div>
-                <div class="col col-xs-2"><strong>Is Head</strong></div>
-                <div class="col col-xs-5"><?php echo ($staffdetails->getPkStaffid()== $staffdetails->getFkDeptid()->getFkStaffid()->getPkStaffid())?"Yes":"No"; ?></div>
-                </div>
+                
                 <?php
                 }
                 ?>

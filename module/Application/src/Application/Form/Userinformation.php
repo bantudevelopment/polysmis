@@ -23,14 +23,6 @@ class Userinformation extends Form
         $fieldset->setUseAsBaseFieldset(true);
         $this->add($fieldset);
         
-        $this->add(array(
-            'name' => 'submit',
-            'attributes' => array(
-                'type' => 'submit',
-                'value' => 'Login',
-                'class' => 'btn btn-lg btn-primary btn-block'
-            )
-        ));
            
      }
  }

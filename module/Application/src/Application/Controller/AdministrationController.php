@@ -37,13 +37,13 @@ class AdministrationController extends AbstractActionController
     
      public function onDispatch(\Zend\Mvc\MvcEvent $e) {
         
-//         $this->authservice = new AuthenticationService();
-//        if(!$this->authservice->hasIdentity()){
-//            $this->redirect()->toRoute("login",array('action'=>'index'));
-//        }
-//        
-//        $identity           = $this->authservice->getIdentity();
-//        $this->userid       = $identity['pkUserid'];
+        $this->authservice = new AuthenticationService();
+        if(!$this->authservice->hasIdentity()){
+            $this->redirect()->toRoute("login",array('action'=>'index'));
+        }
+        
+        $identity           = $this->authservice->getIdentity();
+        $this->userid       = $identity['pkUserid'];
          
         $this->layout()->setVariables(array("activemodule"=>$this->getEvent()->getRouteMatch()->getMatchedRouteName()));
         parent::onDispatch($e);
@@ -615,7 +615,70 @@ class AdministrationController extends AbstractActionController
         }
         return new ViewModel(array("form"=>$form,"details"=>$userdetails));
     }
-   
+    
+    /*
+     * Change password action
+     */
+    public function changepasswordAction(){
+        //Initialize change password form
+        $form = new \Application\Form\Changepassword($this->em,  $this->cs);
+        if($this->request->getPost('submit')){
+            
+            $form->bind($this->request->getPost());
+            $form->setData($this->request->getPost());
+            if($form->isValid()){
+                $formdata = $form->getData();
+                
+                //Get current user entity
+                $user = $this->em->getRepository('\Application\Entity\User')->find($formdata['Password']['pkUserid']);
+                //Set Hashed passsword, lastchangepassword date
+                $user->setPassword($this->cs->_hashing($formdata['Password']['password']));
+                $user->setPasswordlastchanged(new \DateTime());
+                $this->preferences->saveUser($user);
+                return $this->redirect()->toRoute("home",array("action"=>"index"));
+                
+            }   
+        }
+        return new ViewModel(array("form"=>$form,"userid"=>$this->userid));
+    }
+
+
+
+
+
+
+
+
+
+
+    /*
+    *  Change logged in user password password
+    */
+//    public function changepasswordAction(){
+//        
+//        //Initialize user form
+//        $userform = new \Application\Form\Changepassword($this->em,$this->cs);
+//       
+//        $userform->bind($this->request->getPost());
+//        //Check if form has been submitted
+//        if($this->request->getPost('submit')){
+//             
+//            $userform->setData($this->request->getPost());
+//            
+//            if($userform->isValid()){
+//                $formdata = $userform->getData();
+//                $userModel = new \Application\Model\Student($this->em);
+//                
+//                $user = $this->em->getRepository("\Application\Entity\User")->find($this->userid);
+//                
+//                $user->setPassword($this->cs->_hashing($formdata['Password']['password']));
+//                $userModel->saveUserObject($user);
+//                $this->redirect()->toRoute("home",array('action'=>'index'));
+//            } 
+//        }
+//
+//        return new ViewModel(array("userform"=>$userform,"userid"=>$this->userid));
+//    }
    
    public function userdetailsAction(){
        
@@ -646,11 +709,29 @@ class AdministrationController extends AbstractActionController
                 $date->sub(new \DateInterval($interval));
                 
                 $user = $this->em->getRepository('\Application\Entity\User')->find($formData['Password']['pkUserid']);
-                $user->setPassword($this->cs->_hashing($formData['Password']['password']));
-                
-                
+                $user->setPassword($this->cs->_hashing($formData['Password']['password']));      
                 $user->setPasswordlastchanged($date);
                 $this->preferences->saveUser($user);
+            }
+        }
+        
+        //Change department information form
+        $deptform = new \Application\Form\Staff($this->em);
+        if($this->request->getPost('savedeptinfo')){
+            
+            $staff  = new \Application\Model\Staff($this->em);
+
+            $deptform->bind($this->request->getPost());
+            $deptform->setData($this->request->getPost());
+            if($deptform->isValid()){
+                $formdata    = $deptform->getData();
+                //Initialize entity
+                $staffentity = $this->em->getRepository('\Application\Entity\Staff')->find($formdata['Staff']['pkStaffid']);
+                $deptentity  = $this->em->getRepository('\Application\Entity\Department')->find($formdata['Staff']['fkDeptid']);
+                
+                $staffentity->setWorkmode($formdata['Staff']['workmode']);
+                $staffentity->setFkDeptid($deptentity);
+                $staff->saveStaff($staffentity);
             }
         }
         
@@ -685,7 +766,7 @@ class AdministrationController extends AbstractActionController
            $staffdetails = $this->em->getRepository("\Application\Entity\Staff")->findOneBy(array("fkUserid"=>$id));
        }
        
-       return new ViewModel(array("user"=>$user,"staffdetails"=>$staffdetails,"resetform"=>$resetform,"basicform"=>$userinfoform));
+       return new ViewModel(array("msg"=>$successMsg,"user"=>$user,"staffdetails"=>$staffdetails,"resetform"=>$resetform,"basicform"=>$userinfoform,"deptform"=>$deptform));
    }
    
     
