@@ -29,6 +29,7 @@
                 <tbody>
                   <?php
                   foreach($servicedmodules as $servicedmodule){
+                      if($servicedmodule->getFlag() != "UNABLETOALLOCATE"){
                   ?>
 
                   <tr>
@@ -36,10 +37,11 @@
                     <td><?php echo sprintf("%s (%s)",$servicedmodule->getFkClassmoduleid()->getFkModuleid()->getModuleName(),$servicedmodule->getFkClassmoduleid()->getFkModuleid()->getModuleCode()); ?></td>
                     <td><?php echo $servicedmodule->getReqdept()->getDeptCode(); ?></td>
                     <td><?php echo !empty($servicedmodule->getFklmid())?sprintf("%s, %s",$servicedmodule->getFklmid()->getFkStaffid()->getFkUserid()->getSurname(),substr($servicedmodule->getFklmid()->getFkStaffid()->getFkUserid()->getFirstname(),0,1)):"Not assigned" ?></td>
-                  <td><?php if(!empty($servicedmodule->getFklmid())){ ?><a href="<?php echo $this->url("examination",array("action"=>"servicemoduleform","id"=>$servicedmodule->getFkClassmoduleid()->getPkClassmoduleid(),"subparam"=>$servicedmodule->getFklmid()->getPkLmid())); ?>" class="btn btn-success">Change</a><?php }else{ ?> <a href="<?php echo $this->url("examination",array("action"=>"servicemoduleform","id"=>$servicedmodule->getFkClassmoduleid()->getPkClassmoduleid())); ?>" class="btn btn-danger">Allocate</a><?php } ?>   </td>
+                  <td><?php if(!empty($servicedmodule->getFklmid())){ ?><a href="<?php echo $this->url("examination",array("action"=>"servicemoduleform","id"=>$servicedmodule->getFkClassmoduleid()->getPkClassmoduleid(),"subparam"=>$servicedmodule->getPkSmid())); ?>" class="btn btn-success">Change</a><?php }else{ ?> <a href="<?php echo $this->url("examination",array("action"=>"servicemoduleform","id"=>$servicedmodule->getFkClassmoduleid()->getPkClassmoduleid(),"subparam"=>$servicedmodule->getPkSmid())); ?>" class="btn btn-danger">Allocate</a><?php } ?>   </td>
                   </tr>
                   
                   <?php
+                      }
                   }
 
                   ?>

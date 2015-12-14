@@ -8,9 +8,15 @@
                         <div class="alert alert-info"><strong><?php echo sprintf("%s - %s (%s)",$module->getFkClassid()->getClassCode(),  strtoupper($module->getFkModuleid()->getModuleName()),$module->getFkModuleid()->getModuleCode()); ?></strong></div>
 <?php
     
+    if(!empty($details)){
+        $staffid = !empty($details->getFklmid())?$details->getFklmid()->getFkStaffid()->getPkStaffid():$details->getFlag();
+    }else{
+        $staffid = $form->get('Servicedmodule')->get('fkStaffid')->getValue();
+    }
+    
     $form->setAttributes(array('name'=>'formsubmit','class'=>'form-horizontal'))->prepare();
     echo $this->form()->openTag($form);
-    $staffid    = (!empty($details))?$details->getFkStaffid()->getPkStaffid():$form->get('Servicedmodule')->get('fkStaffid')->getValue();
+    
  ?>
      <div class="row form-group" >   
        <div class="col-sm-3"><?php echo $this->formLabel($form->get('Servicedmodule')->get('fkStaffid')); ?> </div>

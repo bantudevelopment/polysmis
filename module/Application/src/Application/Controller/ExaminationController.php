@@ -105,6 +105,9 @@ class ExaminationController extends AbstractActionController
                         $entity = new \Application\Entity\Lecturermodule();
                     }
                     
+                    //Delete serviced module first
+                    $this->exams->deletefromdb("\Application\Entity\Servicedmodule", array("fkClassmoduleid"=>$module->getPkClassmoduleid()));
+                    
                     //Get selected staff entity
                     $staffentity = $this->em->getRepository('\Application\Entity\Staff')->find($formData['Lecturermodule']['fkStaffid']);
                     
@@ -169,10 +172,11 @@ class ExaminationController extends AbstractActionController
         $subid = $this->getEvent()->getRouteMatch()->getParam('subparam');
         $module = $this->em->getRepository("\Application\Entity\Classmodule")->find($id);
         $lecturermodule = "";
-        if($subid){
-            $lecturermodule = $this->em->getRepository("\Application\Entity\Lecturermodule")->find($subid);
-        }
 
+        if($subid){
+            $lecturermodule = $this->em->getRepository("\Application\Entity\Servicedmodule")->find($subid);
+        }
+    
        $deptentity      = $this->em->getRepository("\Application\Entity\Staff")->findOneBy(array("fkUserid"=>$this->userid));;
        $form = new \Application\Form\Servicedmodule($this->em,$deptentity->getFkDeptid()->getPkDeptid());
        
@@ -181,14 +185,36 @@ class ExaminationController extends AbstractActionController
             $form->setData($this->request->getPost());
             if($form->isValid()){
                 $formdata = $form->getData();
-                if($formdata['Servicedmodule']['fkStaffid']=="UNABLETOALLOCATE"){
-                    //Update serviced module
+               
+                $assignedstaffid = !empty($lecturermodule->getFklmid())?$lecturermodule->getFklmid()->getPkLmid():""; 
+                
+                $entity = $lecturermodule;
+               
+                // If staff id is numeric, save in lecturer module table, and save in serviced module
+                if(is_numeric($formdata['Servicedmodule']['fkStaffid'])){
                     
-                    //Delete lecturer if exist
+                    $staffentity = $this->em->getRepository("\Application\Entity\Staff")->find($formdata['Servicedmodule']['fkStaffid']);
+                    
+                    $lecturerentity = new \Application\Entity\Lecturermodule();
+                    $lecturerentity->setFkClassmoduleid($module);
+                    $lecturerentity->setFkStaffid($staffentity);
+                    $lecturerid = $this->exams->saveLecturerModule($lecturerentity);
+                    
+                    $entity->setFklmid($lecturerid);
+                    $entity->setFlag("SERVICED");
                 }else{
-                    
+                    // Otherwise, save in serviced module
+                    $entity->setFklmid(NULL);
+                    $entity->setFlag($formdata['Servicedmodule']['fkStaffid']);
+                }
+                $this->exams->saveServicedModule($entity);
+                
+                if($assignedstaffid != ""){
+                 //Delete if lecturer exist
+                    $this->exams->deletefromdb("\Application\Entity\Lecturermodule",$assignedstaffid);
                 }
                 
+                $this->redirect()->toRoute("examination",array("action"=>"lecturermodule"));
             }
        }
        
