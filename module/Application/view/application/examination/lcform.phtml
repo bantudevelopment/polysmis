@@ -1,0 +1,75 @@
+<script type="text/javascript">
+$(document).ready(function(){
+     //Check if request other departments is selected
+    $("#fkStaffid").click(function(){
+        if($(this).val()== "-1" ){
+            $("#deptid").show();
+        }else{
+            $("#fkReqdeptid").val("");
+            $("#deptid").hide();
+        }
+    });
+});
+</script>
+<div class="row">
+        <div class="col col-md-12">
+            <div class="col col-md-6 col-md-offset-3">
+                <div class="panel panel-default">
+                    <h4 class="page-header">Lecturer module allocation</h4>
+                    <div class="panel-body">
+                        <div class="alert alert-info"><strong><?php echo sprintf("%s - %s (%s)",$module->getFkClassid()->getClassCode(),  strtoupper($module->getFkModuleid()->getModuleName()),$module->getFkModuleid()->getModuleCode()); ?></strong></div>
+<?php
+    
+    $form->setAttributes(array('name'=>'formsubmit','class'=>'form-horizontal'))->prepare();
+    echo $this->form()->openTag($form);
+    $staffid    = (!empty($details))?$details->getFkStaffid()->getPkStaffid():$form->get('Lecturermodule')->get('fkStaffid')->getValue();
+//    $code    = (!empty($details))?$details->getDeptCode():$form->get('Department')->get('deptCode')->getValue();
+//    $user    = (!empty($details))?$details->getFkStaffid():$form->get('Department')->get('fkStaffid')->getValue();
+//   // $faculty = (!empty($details))?$details->getFkFacultyid():$form->get('Department')->get('fkFacultyid')->getValue();
+//    $id      = (!empty($details))?$details->getPkDeptid():$form->get('Department')->get('pkDeptid')->getValue();
+ ?>
+     <div class="row form-group" >   
+       <div class="col-sm-3"><?php echo $this->formLabel($form->get('Lecturermodule')->get('fkStaffid')); ?> </div>
+       <div class="col-sm-5">
+           <?php echo $this->formElement($form->get('Lecturermodule')->get('fkStaffid')->setValue($staffid));
+                 echo $this->formElement($form->get('Lecturermodule')->get('pkLmid'));
+           ?>
+       </div>
+       <div class="col-sm-4"><?php echo $this->formElementErrors($form->get('Lecturermodule')->get('fkStaffid')); ?></div>
+    </div>
+                        
+                        
+    <div class="row form-group" id="deptid">   
+       <div class="col-sm-3"><?php echo $this->formLabel($form->get('fkReqdeptid')); ?> </div>
+       <div class="col-sm-5">
+           <?php echo $this->formElement($form->get('fkReqdeptid')); ?>
+       </div>
+       <div class="col-sm-4"><?php echo $this->formElementErrors($form->get('fkReqdeptid')); ?></div>
+    </div>
+    
+    <div class="form-group" >   
+       <div class="col-sm-3"></div>
+       <div class="col-sm-5">
+           <input type="submit" name="save" class="btn btn-success" value="Save" />
+           <a href="<?php echo $this->url("examination",array("action"=>"lecturermodule")); ?>" class="btn btn-warning">Cancel</a>
+       </div>
+       <div class="col-sm-4"></div>
+    </div>                            
+<?php
+ echo $this->form()->closeTag();
+?>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript" language="javascript">
+    var selectedDepartment = <?php echo ($this->formElementErrors($form->get('fkReqdeptid')))?0:1; ?>;
+    if(selectedDepartment == 1){
+        $("#deptid").hide();
+    }else{
+        $("#deptid").show();
+    }
+    
+</script>

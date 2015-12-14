@@ -4,12 +4,16 @@
     </div>
         <div class="col col-md-10">
             <div class="panel panel-default">
-            <h3 class="page-header">2015/2016 - Lecture module allocation</h3>
+                <h3 class="page-header"><?php echo sprintf("%s %s %s",$period->getParentid()->getAcyr(),"semester",$period->getAcyr()); ?> - Lecturer module allocation</h3>
             <div class="panel-body">
+                <a class="btn btn-info "><i class="glyphicon glyphicon-eye-open"></i> Unassigned </a>&nbsp;<a class="btn btn-warning pull-right"><i class="glyphicon glyphicon-file"></i> Export </a> <br>
                 <hr>
+                <?php
+                if(!empty($servicedmodules)){
+                ?>
                 <div class="alert alert-danger">
                 
-                <?php //echo $msg; ?>&nbsp;<strong>SERVICING DEPARTMENT</strong>
+                <?php //echo $msg; ?>&nbsp;<strong>SERVICING DEPARTMENTS</strong>
             </div>
             
             <table class="table table-bordered table-striped table-hover">
@@ -24,36 +28,31 @@
                 </thead>
                 <tbody>
                   <?php
-                  //foreach($faculties as $faculty){
+                  foreach($servicedmodules as $servicedmodule){
                   ?>
 
                   <tr>
-                    <td>Mathematics(MAT-200)</td>
-                    <td>Thengolose P(MTS)</td>
-                    <td>Mathematics(MAT-200)</td>
-                    <td>Thengolose P(MTS)</td>
-                    <td><a href="#" class="btn btn-success">Allocate</a>    </td>
+                    <td><?php echo sprintf("%s (%s)",$servicedmodule->getFkClassmoduleid()->getFkClassid()->getClassName(),$servicedmodule->getFkClassmoduleid()->getFkClassid()->getClassCode()); ?></td>
+                    <td><?php echo sprintf("%s (%s)",$servicedmodule->getFkClassmoduleid()->getFkModuleid()->getModuleName(),$servicedmodule->getFkClassmoduleid()->getFkModuleid()->getModuleCode()); ?></td>
+                    <td><?php echo $servicedmodule->getReqdept()->getDeptCode(); ?></td>
+                    <td><?php echo !empty($servicedmodule->getFklmid())?sprintf("%s, %s",$servicedmodule->getFklmid()->getFkStaffid()->getFkUserid()->getSurname(),substr($servicedmodule->getFklmid()->getFkStaffid()->getFkUserid()->getFirstname(),0,1)):"Not assigned" ?></td>
+                  <td><?php if(!empty($servicedmodule->getFklmid())){ ?><a href="<?php echo $this->url("examination",array("action"=>"servicemoduleform","id"=>$servicedmodule->getFkClassmoduleid()->getPkClassmoduleid(),"subparam"=>$servicedmodule->getFklmid()->getPkLmid())); ?>" class="btn btn-success">Change</a><?php }else{ ?> <a href="<?php echo $this->url("examination",array("action"=>"servicemoduleform","id"=>$servicedmodule->getFkClassmoduleid()->getPkClassmoduleid())); ?>" class="btn btn-danger">Allocate</a><?php } ?>   </td>
                   </tr>
-                  <tr>
-                    <td>Web site development(WEB-200)</td>
-                    <td>Unassigned</td>
-                    <td>Mathematics(MAT-200)</td>
-                    <td>Thengolose P(MTS)</td>
-                    <td><a href="#" class="btn btn-danger">Allocate</a>    </td>
-                  </tr>
+                  
                   <?php
-                 // }
+                  }
 
                   ?>
                 </tbody>
             </table>
             <hr>
              <?php
-            for($counter = 1; $counter<=3; $counter++){
+                }
+            foreach($allocations as $allocation){
             ?>
             <div class="alert alert-info">
                 
-                <?php //echo $msg; ?>&nbsp;<strong>Bachelor of science in information technology year 1(BIT1)</strong>
+                <?php //echo $msg; ?>&nbsp;<strong><?php echo strtoupper($allocation['CLASSNAME']); ?></strong>
             </div>
             
 <table class="table table-bordered table-striped table-hover">
@@ -66,23 +65,19 @@
     </thead>
     <tbody>
       <?php
-      //foreach($faculties as $faculty){
+      foreach($allocation['MODULE'] as $module){
+          //$status = empty($module['allocations'])?"Unassigned":"Testing";
       ?>
 
       <tr>
-        <td>Mathematics(MAT-200)</td>
-        <td>Thengolose P(MTS)</td>
+          <td><?php echo sprintf("%s (%s)",$module['module']->getFkModuleid()->getModuleName(),$module['module']->getFkModuleid()->getModuleCode()); ?></td>
+        <td><?php echo $module['allocations']; ?></td>
         
-        <td><a href="#" class="btn btn-success">Allocate</a>    </td>
+        <td><?php if($module['isinhand']){ if($module['canmodify']){ ?><a href="<?php echo $this->url("examination",array("action"=>"lcform","id"=>$module['module']->getPkClassmoduleid(),"subparam"=>$module['staff']->getPkLmid())); ?>" class="btn btn-success">Change</a> <?php }else{ ?> <a href="<?php echo $this->url("examination",array("action"=>"lcform","id"=>$module['module']->getPkClassmoduleid())); ?>" class="btn btn-danger">Allocate</a> <?php } } ?>   </td>
       </tr>
-      <tr>
-        <td>Web site development(WEB-200)</td>
-        <td>Unassigned</td>
-        
-        <td><a href="#" class="btn btn-danger">Allocate</a>    </td>
-      </tr>
+      
       <?php
-     // }
+      }
       
       ?>
     </tbody>
@@ -90,25 +85,7 @@
             <?php
             }
             ?>
-                <div class="col ">
-  <form class="form-inline" role="form">
-    <div class="form-group">
-      <label for="email">Show:</label>
-
-<select class="form-control">
-  <option>10</option>
-  <option>20</option>
-  <option>30</option>
-  <option>50</option>
-  <option>100</option>
-</select> 
-       
-          
-    </div>
-
-      <a class="btn btn-success">Download <i class="glyphicon glyphicon-download"></i></a> 
-                 
-               </div>
+               
             </div>
                 </div>
         </div>

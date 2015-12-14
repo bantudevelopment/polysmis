@@ -64,10 +64,10 @@ class Classmodule extends \Application\Entity\Classmodule implements \Doctrine\O
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', '' . "\0" . 'Application\\Entity\\Classmodule' . "\0" . 'pkCcid', '' . "\0" . 'Application\\Entity\\Classmodule' . "\0" . 'iscore', '' . "\0" . 'Application\\Entity\\Classmodule' . "\0" . 'examweight', '' . "\0" . 'Application\\Entity\\Classmodule' . "\0" . 'cwkweight', '' . "\0" . 'Application\\Entity\\Classmodule' . "\0" . 'fkGroupid', '' . "\0" . 'Application\\Entity\\Classmodule' . "\0" . 'parentid', '' . "\0" . 'Application\\Entity\\Classmodule' . "\0" . 'fkModuleid', '' . "\0" . 'Application\\Entity\\Classmodule' . "\0" . 'fkPeriodid');
+            return array('__isInitialized__', '' . "\0" . 'Application\\Entity\\Classmodule' . "\0" . 'pkClassmoduleid', '' . "\0" . 'Application\\Entity\\Classmodule' . "\0" . 'cwkweight', '' . "\0" . 'Application\\Entity\\Classmodule' . "\0" . 'exweight', '' . "\0" . 'Application\\Entity\\Classmodule' . "\0" . 'isProject', '' . "\0" . 'Application\\Entity\\Classmodule' . "\0" . 'isPrerequisitefor', '' . "\0" . 'Application\\Entity\\Classmodule' . "\0" . 'scheme', '' . "\0" . 'Application\\Entity\\Classmodule' . "\0" . 'isCore', '' . "\0" . 'Application\\Entity\\Classmodule' . "\0" . 'fkClassid', '' . "\0" . 'Application\\Entity\\Classmodule' . "\0" . 'fkModuleid', '' . "\0" . 'Application\\Entity\\Classmodule' . "\0" . 'fkAcademicperiod', '' . "\0" . 'Application\\Entity\\Classmodule' . "\0" . 'parentmodule');
         }
 
-        return array('__isInitialized__', '' . "\0" . 'Application\\Entity\\Classmodule' . "\0" . 'pkCcid', '' . "\0" . 'Application\\Entity\\Classmodule' . "\0" . 'iscore', '' . "\0" . 'Application\\Entity\\Classmodule' . "\0" . 'examweight', '' . "\0" . 'Application\\Entity\\Classmodule' . "\0" . 'cwkweight', '' . "\0" . 'Application\\Entity\\Classmodule' . "\0" . 'fkGroupid', '' . "\0" . 'Application\\Entity\\Classmodule' . "\0" . 'parentid', '' . "\0" . 'Application\\Entity\\Classmodule' . "\0" . 'fkModuleid', '' . "\0" . 'Application\\Entity\\Classmodule' . "\0" . 'fkPeriodid');
+        return array('__isInitialized__', '' . "\0" . 'Application\\Entity\\Classmodule' . "\0" . 'pkClassmoduleid', '' . "\0" . 'Application\\Entity\\Classmodule' . "\0" . 'cwkweight', '' . "\0" . 'Application\\Entity\\Classmodule' . "\0" . 'exweight', '' . "\0" . 'Application\\Entity\\Classmodule' . "\0" . 'isProject', '' . "\0" . 'Application\\Entity\\Classmodule' . "\0" . 'isPrerequisitefor', '' . "\0" . 'Application\\Entity\\Classmodule' . "\0" . 'scheme', '' . "\0" . 'Application\\Entity\\Classmodule' . "\0" . 'isCore', '' . "\0" . 'Application\\Entity\\Classmodule' . "\0" . 'fkClassid', '' . "\0" . 'Application\\Entity\\Classmodule' . "\0" . 'fkModuleid', '' . "\0" . 'Application\\Entity\\Classmodule' . "\0" . 'fkAcademicperiod', '' . "\0" . 'Application\\Entity\\Classmodule' . "\0" . 'parentmodule');
     }
 
     /**
@@ -176,60 +176,16 @@ class Classmodule extends \Application\Entity\Classmodule implements \Doctrine\O
     /**
      * {@inheritDoc}
      */
-    public function getPkCcid()
+    public function getPkClassmoduleid()
     {
         if ($this->__isInitialized__ === false) {
-            return (int)  parent::getPkCcid();
+            return (int)  parent::getPkClassmoduleid();
         }
 
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPkCcid', array());
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPkClassmoduleid', array());
 
-        return parent::getPkCcid();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setIscore($iscore)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setIscore', array($iscore));
-
-        return parent::setIscore($iscore);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getIscore()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getIscore', array());
-
-        return parent::getIscore();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setExamweight($examweight)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setExamweight', array($examweight));
-
-        return parent::setExamweight($examweight);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getExamweight()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getExamweight', array());
-
-        return parent::getExamweight();
+        return parent::getPkClassmoduleid();
     }
 
     /**
@@ -257,45 +213,133 @@ class Classmodule extends \Application\Entity\Classmodule implements \Doctrine\O
     /**
      * {@inheritDoc}
      */
-    public function setFkGroupid(\Application\Entity\Programgroup $fkGroupid = NULL)
+    public function setExweight($exweight)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setFkGroupid', array($fkGroupid));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setExweight', array($exweight));
 
-        return parent::setFkGroupid($fkGroupid);
+        return parent::setExweight($exweight);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getFkGroupid()
+    public function getExweight()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFkGroupid', array());
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getExweight', array());
 
-        return parent::getFkGroupid();
+        return parent::getExweight();
     }
 
     /**
      * {@inheritDoc}
      */
-    public function setParentid(\Application\Entity\Classmodule $parentid = NULL)
+    public function setIsProject($isProject)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setParentid', array($parentid));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setIsProject', array($isProject));
 
-        return parent::setParentid($parentid);
+        return parent::setIsProject($isProject);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getParentid()
+    public function getIsProject()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getParentid', array());
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getIsProject', array());
 
-        return parent::getParentid();
+        return parent::getIsProject();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setIsPrerequisitefor($isPrerequisitefor)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setIsPrerequisitefor', array($isPrerequisitefor));
+
+        return parent::setIsPrerequisitefor($isPrerequisitefor);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getIsPrerequisitefor()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getIsPrerequisitefor', array());
+
+        return parent::getIsPrerequisitefor();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setScheme($scheme)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setScheme', array($scheme));
+
+        return parent::setScheme($scheme);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getScheme()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getScheme', array());
+
+        return parent::getScheme();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setIsCore($isCore)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setIsCore', array($isCore));
+
+        return parent::setIsCore($isCore);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getIsCore()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getIsCore', array());
+
+        return parent::getIsCore();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setFkClassid(\Application\Entity\Classes $fkClassid = NULL)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setFkClassid', array($fkClassid));
+
+        return parent::setFkClassid($fkClassid);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getFkClassid()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFkClassid', array());
+
+        return parent::getFkClassid();
     }
 
     /**
@@ -323,23 +367,45 @@ class Classmodule extends \Application\Entity\Classmodule implements \Doctrine\O
     /**
      * {@inheritDoc}
      */
-    public function setFkPeriodid(\Application\Entity\Academicperiod $fkPeriodid = NULL)
+    public function setFkAcademicperiod(\Application\Entity\Academicyear $fkAcademicperiod = NULL)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setFkPeriodid', array($fkPeriodid));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setFkAcademicperiod', array($fkAcademicperiod));
 
-        return parent::setFkPeriodid($fkPeriodid);
+        return parent::setFkAcademicperiod($fkAcademicperiod);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getFkPeriodid()
+    public function getFkAcademicperiod()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFkPeriodid', array());
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFkAcademicperiod', array());
 
-        return parent::getFkPeriodid();
+        return parent::getFkAcademicperiod();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setParentmodule(\Application\Entity\Classmodule $parentmodule = NULL)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setParentmodule', array($parentmodule));
+
+        return parent::setParentmodule($parentmodule);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getParentmodule()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getParentmodule', array());
+
+        return parent::getParentmodule();
     }
 
 }

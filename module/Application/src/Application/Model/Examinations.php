@@ -19,6 +19,89 @@ class Examinations extends Commonmodel {
         $this->em = $em;
     }  
     
+    /*
+     * Get department classes
+     */
+    public function getDepartmentClasses($deptid){
+        $query = $this->em->createQuery(" SELECT C,P,D FROM \Application\Entity\Classes C"
+                                      . " JOIN C.fkProgramid P "
+                                      . " JOIN P.fkDeptid D "
+                                      . " WHERE D.pkDeptid = :deptid")
+                          ->setParameter("deptid", $deptid);
+        return $query->getResult();
+    }
+    
+    /*
+     * Get serviced modules
+     */
+    public function getServicedModules($deptid,$period = null){
+        
+        $currentperiod  = $this->getCurrentPeriod();
+        $selectedmodules = array();
+        $selectedperiod = ($period != null)?$period:$currentperiod[0]->getPkAcademicperiodid();
+        
+        $query = $this->em->createQuery(" SELECT S,C FROM \Application\Entity\Servicedmodule S"
+                                      . " JOIN S.fkClassmoduleid C "
+                                      . " WHERE S.servicingdept = :deptid "
+                                      . " AND C.fkAcademicperiod = :period")
+                          ->setParameter("deptid", $deptid)
+                          ->setParameter("period", $selectedperiod);
+        foreach($query->getResult() as $results){
+            $selectedmodules[] = $results;
+        }
+        
+        return $selectedmodules;
+    }
+    
+    
+    public function getLecturerModuleAllocation($deptid,$period = null){
+        //Current period
+        $currentperiod  = $this->getCurrentPeriod();
+        $selectedmodules = array();
+        $selectedperiod = ($period != null)?$period:$currentperiod[0]->getPkAcademicperiodid();
+        //Get department classes
+        $classes = $this->getDepartmentClasses($deptid);
+        foreach($classes as $class){
+                $selectedmodules = array();
+            //Get all modules assigned
+                $modules = $this->em->getRepository("\Application\Entity\Classmodule")->findBy(array("fkAcademicperiod"=>$selectedperiod,"fkClassid"=>$class->getPkClassid()));
+                //Get assigned modules
+                foreach($modules as $module){
+                    $canmodify = $isinhand = 1;
+                    $status = "<span class='text text-danger'>Not allocated</span>";
+                    //Get requested details
+                    $staff = $this->em->getRepository("\Application\Entity\Servicedmodule")->findOneBy(array("fkClassmoduleid"=>$module->getPkClassmoduleid()));
+                    //Get assigned staff
+                    if(count($staff)<=0){
+                        $staff     = $this->em->getRepository("\Application\Entity\Lecturermodule")->findOneBy(array("fkClassmoduleid"=>$module->getPkClassmoduleid()));
+                        $status    = empty($staff)?sprintf("%s","<span class='text text-danger'>Not allocated</span>"):sprintf("<span class='text text-info'>%s, %s</span>",$staff->getFkStaffid()->getFkUserid()->getSurname(),  substr($staff->getFkStaffid()->getFkUserid()->getFirstname(),0,1)); 
+                        $canmodify = empty($staff)?0:1;
+                    }else{
+                        $isinhand = 0;
+                        if(!empty($staff->getFklmid())){
+                            $status = sprintf("<span class='text text-info'>%s, %s (%s)</span>",$staff->getFklmid()->getFkStaffid()->getFkUserid()->getSurname(),substr($staff->getFklmid()->getFkStaffid()->getFkUserid()->getFirstname(),0,1),$staff->getServicingdept()->getDeptCode());
+                        }elseif($staff->getFlag() == "UNABLETOALLOCATE"){
+                            $status   = sprintf("<span class='text text-info'>%s</span>","UNABLE TO ALLOCATE"); 
+                            $isinhand = 1;
+                            $canmodify = 0;
+                        }else{
+                          $status   = sprintf("%s (%s)","HOD",$staff->getServicingdept()->getDeptCode());  
+                        }
+                        
+                        
+                    }
+                    
+                    $selectedmodules[$module->getPkClassmoduleid()] = array("module"=>$module,"allocations"=>$status,"canmodify"=>$canmodify,"isinhand"=>$isinhand,"staff"=>$staff);
+                }
+                
+                $allocation[$class->getPkClassid()] = array("CLASSNAME"=> $class->getClassName()."(".$class->getClassCode().")","MODULE"=>$selectedmodules);
+        }
+        
+       return $allocation;
+    }
+    
+    
+    
     public function getSubjectSummary($period,$group){
         $allocations = $this->em->getRepository('\Application\Entity\Classmodule')->findBy(array("fkPeriodid"=>$period->getPkPeriodid(),"fkGroupid"=>$group));
         
@@ -199,6 +282,71 @@ class Examinations extends Commonmodel {
         try{
             //Commit values set to the object 
             if(!$object->getPkAiid()){
+                $this->em->persist($eo);
+            }
+
+            //Save values if just updating record
+            $this->em->flush($eo);
+            
+            return $eo;
+            
+        }catch(Exception $e){
+            
+            throw($e->getMessages());
+        }
+    }
+    
+    /*
+     * Save lecturer module
+     */
+    public function saveLecturerModule($object){
+        
+        if(!$object->getPkLmid()){
+            $eo = new \Application\Entity\Lecturermodule();
+        }else{
+            $eo = $this->em->getRepository("\Application\Entity\Lecturermodule")->find($object->getPkLmid());
+        }
+       
+        $eo->setFkClassmoduleid($object->getFkClassmoduleid());
+        $eo->setFkStaffid($object->getFkStaffid());
+        
+        try{
+            //Commit values set to the object 
+            if(!$object->getPkLmid()){
+                $this->em->persist($eo);
+            }
+
+            //Save values if just updating record
+            $this->em->flush($eo);
+            
+            return $eo;
+            
+        }catch(Exception $e){
+            
+            throw($e->getMessages());
+        }
+    }
+    
+    /*
+     * Save serviced module
+     */
+    public function saveServicedModule($object){
+        
+        if(!$object->getPkSmid()){
+            $eo = new \Application\Entity\Servicedmodule();
+        }else{
+            $eo = $this->em->getRepository("\Application\Entity\Servicedmodule")->find($object->getPkSmid());
+        }
+       
+        $eo->setFkClassmoduleid($object->getFkClassmoduleid());
+        $eo->setReqdept($object->getReqdept());
+        $eo->setServicingdept($object->getServicingdept());
+        $eo->setFklmid($object->getFklmid());
+        $eo->setFlag($object->getFlag());
+        
+        try{
+            //Commit values set to the object 
+            if(!$object->getPkSmid()){
                 $this->em->persist($eo);
             }
 

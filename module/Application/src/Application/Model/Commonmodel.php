@@ -157,6 +157,27 @@ abstract class Commonmodel{
         return $query->getResult();
     }
     
+    
+        /*
+     * Generate current academic year
+     */
+    
+    public function getCurrentPeriod($class = null){
+        //Get current date
+        $date = new \DateTime();
+
+        $query = $this->em->createQuery(" SELECT A FROM \Application\Entity\Academicyear A"
+                                       ." WHERE :currentdate BETWEEN A.startDate AND A.endDate "
+                                       . " AND A.parentid is not null ")
+                
+                          ->setParameter("currentdate", $date);
+        
+        return $query->getResult();
+    }
+    
+    
+    
+    
     /*
      * Get date difference in days
      */
@@ -251,8 +272,16 @@ abstract class Commonmodel{
             /*
              * 
              */
-            $object = $this->em->getRepository($entity)->find($criteria);
-            $this->em->remove($object);
+            if(!is_array($criteria)){
+                $object = $this->em->getRepository($entity)->find($criteria);
+                $this->em->remove($object);
+            }else{
+                $object = $this->em->getRepository($entity)->findBy($criteria);
+                foreach($object as $obj){
+                    $this->em->remove($obj);
+                }
+            }
+            
             $this->em->flush();
             $this->em->getConnection()->commit();
         }catch(Doctrine\DBAL\DBALException $e){

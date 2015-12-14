@@ -62,7 +62,7 @@ return array(
             'examination' => array(
                 'type' => 'segment',
                 'options' => array(
-                    'route'    => '/examination[/:action][/:id]',
+                    'route'    => '/examination[/:action][/:id][/:subparam]',
                     'constraints' => array(
                                     'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                     ),

@@ -33,19 +33,8 @@
 //    })(jQuery);
 
 $(function(){
-    
-    
-     $('a').on('mousedown', stopNavigate);
 
-    $('a').on('mouseleave', function () {
-        $(window).on('beforeunload', function(){
-               return 'Are you sure you want to leave?';
-        });
-     });
-
-    function stopNavigate(){    
-        $(window).off('beforeunload');
-    }
+     
     
     /*
      * Hide all elements
