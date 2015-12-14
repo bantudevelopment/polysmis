@@ -132,14 +132,13 @@ class Examinations extends Commonmodel {
 
 
     public function getLecturerModules($userid,$period=null){
-       $query = $this->em->createQuery("SELECT M FROM \Application\Entity\Lecturermodule M "
+       $query = $this->em->createQuery("SELECT M,C,S FROM \Application\Entity\Lecturermodule M "
                                        . " JOIN M.fkStaffid S "
-                                       . " JOIN M.fkCcid P"
+                                       . " JOIN M.fkClassmoduleid C"
                                        . " WHERE S.fkUserid = :user "
-                                   //    . " AND   P.fkPeriodid = :period"
-                                       . " ORDER BY P.fkPeriodid")
-                         ->setParameter('user', $userid);
-                   //$query->setParameter('period', $period);
+                                       . " AND   C.fkAcademicperiod = :period")
+                         ->setParameter('user', $userid)
+                         ->setParameter('period', $period);
        return $query->getResult();
     }
     

@@ -221,6 +221,20 @@ class ExaminationController extends AbstractActionController
        
        return new ViewModel(array("form"=>$form,"module"=>$module,"details"=>$lecturermodule));
    } 
+   
+   public function mymodulesAction(){
+       $period  = $this->exams->getCurrentPeriod();
+       $modules = $this->exams->getLecturerModules($this->userid, $period[0]->getPkAcademicperiodid());
+
+       return new ViewModel(array("modules"=>$modules,"period"=>$period[0]));
+   }
+   
+   public function assessmentsAction(){
+       $period  = $this->exams->getCurrentPeriod();
+       $modules = $this->exams->getLecturerModules($this->userid, $period[0]->getPkAcademicperiodid());
+
+       return new ViewModel(array("modules"=>$modules,"period"=>$period[0]));
+   }
     
    
 }
