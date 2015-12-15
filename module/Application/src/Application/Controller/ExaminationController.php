@@ -236,5 +236,8 @@ class ExaminationController extends AbstractActionController
        return new ViewModel(array("modules"=>$modules,"period"=>$period[0]));
    }
     
+   public function capturemarksAction(){
+       return new ViewModel();
+   }
    
 }
